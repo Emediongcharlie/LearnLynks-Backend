@@ -7,11 +7,15 @@ import jakarta.persistence.Id;
 import lombok.Getter;
 import lombok.Setter;
 
+@Getter
+@Setter
 @Entity
-@Getter@Setter
-public class Curriculum {
+public class Assessment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
+    private int score;
+    private Double average;
+    private Status status;
 }

@@ -1,15 +1,15 @@
-package com.project.LearnLynks.models;
+package com.project.LearnLynks.dtos.request;
 
-import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+
+import com.project.LearnLynks.models.Curriculum;
+import com.project.LearnLynks.models.LearningMaterial;
+import jakarta.persistence.OneToMany;
 
 import java.time.LocalDate;
 import java.util.List;
 
-@Entity
+public class CreateLessonPlanRequest {
 
-public class LessonPlan {
 
     public int getLessonPlanId() {
         return lessonPlanId;
@@ -67,6 +67,14 @@ public class LessonPlan {
         this.lessonPlanStatus = lessonPlanStatus;
     }
 
+    private int lessonPlanId;
+    private String lessonPlanName;
+    private String lessonPlanDescription;
+    private LocalDate lessonPlanStartDate;
+    private LocalDate lessonPlanEndDate;
+    private LocalDate lessonPlanDuration;
+    private String lessonPlanStatus;
+
     public List<Curriculum> getCurriculumAdopted() {
         return CurriculumAdopted;
     }
@@ -83,28 +91,8 @@ public class LessonPlan {
         this.material = material;
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int lessonPlanId;
-    private String lessonPlanName;
-    private String lessonPlanDescription;
-    private LocalDate lessonPlanStartDate;
-    private LocalDate lessonPlanEndDate;
-    private LocalDate lessonPlanDuration;
-    private String lessonPlanStatus;
     @OneToMany
     private List<Curriculum> CurriculumAdopted;
     @OneToMany
     private List<LearningMaterial> material;
-
-    public Materials getLessonTool() {
-        return lessonTool;
-    }
-
-    public void setLessonTool(Materials lessonTool) {
-        this.lessonTool = lessonTool;
-    }
-
-    private Materials lessonTool;
-
 }
