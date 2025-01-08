@@ -1,11 +1,11 @@
 package com.project.LearnLynks.Services;
 
 import com.project.LearnLynks.Data.Repositories.CurriculumRepository;
-import com.project.LearnLynks.Dtos.Request.CreateCurriculumRequest;
-import com.project.LearnLynks.Dtos.Request.DeleteCurriculumRequest;
-import com.project.LearnLynks.Dtos.Request.FindCurriculumRequest;
-import com.project.LearnLynks.Dtos.Request.UpdateCurriculumRequest;
-import com.project.LearnLynks.Dtos.Response.*;
+import com.project.LearnLynks.dtos.request.CreateCurriculumRequest;
+import com.project.LearnLynks.dtos.request.DeleteCurriculumRequest;
+import com.project.LearnLynks.dtos.request.FindCurriculumRequest;
+import com.project.LearnLynks.dtos.request.UpdateCurriculumRequest;
+import com.project.LearnLynks.dtos.response.*;
 import org.springframework.stereotype.Service;
 
 @Service

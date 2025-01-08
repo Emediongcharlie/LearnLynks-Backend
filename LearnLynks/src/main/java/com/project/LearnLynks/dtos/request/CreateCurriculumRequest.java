@@ -1,28 +1,17 @@
-package com.project.LearnLynks.Data.Models;
+package com.project.LearnLynks.dtos.request;
 
+import com.project.LearnLynks.Data.Models.Courses;
 import com.project.LearnLynks.Enums.Status;
-import jakarta.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
 
-@Entity
-public class Curriculum {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int curriculumId;
+public class CreateCurriculumRequest {
     private String name;
     private String description;
     private LocalDate startDate;
     private LocalDate endDate;
     private Status status;
-
-    public int getCurriculumId() {
-        return curriculumId;
-    }
-
-    public void setCurriculumId(int curriculumId) {
-        this.curriculumId = curriculumId;
-    }
+    private String creator;
 
     public String getName() {
         return name;
@@ -64,14 +53,6 @@ public class Curriculum {
         this.status = status;
     }
 
-    public List<Courses> getCourses() {
-        return courses;
-    }
-
-    public void setCourses(List<Courses> courses) {
-        this.courses = courses;
-    }
-
     public String getCreator() {
         return creator;
     }
@@ -80,7 +61,13 @@ public class Curriculum {
         this.creator = creator;
     }
 
-    @OneToMany
+    public List<Courses> getCourses() {
+        return courses;
+    }
+
+    public void setCourses(List<Courses> courses) {
+        this.courses = courses;
+    }
+
     private List<Courses> courses;
-    private String creator;
 }

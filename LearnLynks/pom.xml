@@ -58,13 +58,18 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
+
 		<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
-		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-			<version>1.18.36</version>
-			<scope>provided</scope>
-		</dependency>
+<!--		<dependency>-->
+<!--			<groupId>org.project lombok</groupId>-->
+<!--			<artifactId>lombok</artifactId>-->
+<!--			<version>1.18.36</version>-->
+<!--			<scope>provided</scope>-->
+<!--		</dependency>-->
+
+
+		<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
