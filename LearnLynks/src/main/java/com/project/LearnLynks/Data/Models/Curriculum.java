@@ -1,9 +1,6 @@
 package com.project.LearnLynks.Data.Models;
 
-import com.project.LearnLynks.Enums.Status;
 import jakarta.persistence.*;
-import java.time.LocalDate;
-import java.util.List;
 
 @Entity
 public class Curriculum {
@@ -12,9 +9,16 @@ public class Curriculum {
     private int curriculumId;
     private String name;
     private String description;
-    private LocalDate startDate;
-    private LocalDate endDate;
-    private Status status;
+    private boolean archived;
+    private String creator;
+
+    public boolean isArchived() {
+        return archived;
+    }
+
+    public void setArchived(boolean archived) {
+        this.archived = archived;
+    }
 
     public int getCurriculumId() {
         return curriculumId;
@@ -40,38 +44,6 @@ public class Curriculum {
         this.description = description;
     }
 
-    public LocalDate getStartDate() {
-        return startDate;
-    }
-
-    public void setStartDate(LocalDate startDate) {
-        this.startDate = startDate;
-    }
-
-    public LocalDate getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(LocalDate endDate) {
-        this.endDate = endDate;
-    }
-
-    public Status getStatus() {
-        return status;
-    }
-
-    public void setStatus(Status status) {
-        this.status = status;
-    }
-
-    public List<Courses> getCourses() {
-        return courses;
-    }
-
-    public void setCourses(List<Courses> courses) {
-        this.courses = courses;
-    }
-
     public String getCreator() {
         return creator;
     }
@@ -80,7 +52,4 @@ public class Curriculum {
         this.creator = creator;
     }
 
-    @OneToMany
-    private List<Courses> courses;
-    private String creator;
 }
