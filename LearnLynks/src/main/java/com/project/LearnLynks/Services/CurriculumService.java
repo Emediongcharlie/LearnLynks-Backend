@@ -11,6 +11,6 @@ public interface CurriculumService {
     UpdateCurriculumResponse update (UpdateCurriculumRequest updateCurriculumRequest);
     FindCurriculumResponse findByName (FindCurriculumRequest findCurriculumRequest);
     FindCurriculumResponse getAll();
-    ArchiveCurriculumResponse archive();
+    ArchiveCurriculumResponse archive(int curriculumId);
     DeleteCurriculumResponse deleteCurriculum(DeleteCurriculumRequest deleteCurriculumRequest);
 }
