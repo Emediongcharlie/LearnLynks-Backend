@@ -7,11 +7,11 @@ import java.time.LocalDate;
 
 public class CreateLessonPlanResponse {
 
-    public int getLessonPlanId() {
+    public Long getLessonPlanId() {
         return lessonPlanId;
     }
 
-    public void setLessonPlanId(int lessonPlanId) {
+    public void setLessonPlanId(Long lessonPlanId) {
         this.lessonPlanId = lessonPlanId;
     }
 
@@ -71,7 +71,7 @@ public class CreateLessonPlanResponse {
         this.message = message;
     }
 
-    private int lessonPlanId;
+    private Long lessonPlanId;
     private String lessonPlanName;
     private String lessonPlanDescription;
     private LocalDate lessonPlanStartDate;

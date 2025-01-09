@@ -8,6 +8,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.time.LocalDate;
+
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.assertNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -24,7 +26,7 @@ public class LessonPlanTest {
         CreateLessonPlanRequest request = new CreateLessonPlanRequest();
         request.setLessonPlanName("physics course");
         request.setLessonPlanDescription("thermodynamics");
-        request.setLessonPlanDuration("two months");
+        request.setLessonPlanDuration(LocalDate.ofEpochDay(3));
         CreateLessonPlanResponse response = lessonPlanService.createLessonPlan(request);
         assertNotNull(response);
     }
@@ -33,7 +35,7 @@ public class LessonPlanTest {
     public void testLessonCouldBeFoundByID(){
         CreateLessonPlanRequest request = new CreateLessonPlanRequest();
         request.setLessonPlanName("physics course");
-        request.setLessonPlanId(1);
+        request.setLessonPlanId(1L);
         LessonPlan response = lessonPlanService.getLessonPlanById(1);
         assertNotNull(response);
         assertEquals(response.getLessonPlanId(), 1);
@@ -44,7 +46,7 @@ public class LessonPlanTest {
     public void testLessonDeleteById(){
         CreateLessonPlanRequest request = new CreateLessonPlanRequest();
         request.setLessonPlanName("physics course");
-        request.setLessonPlanId(1);
+        request.setLessonPlanId(1L);
         LessonPlan response = lessonPlanService.deleteLessonPlan(1);
         assertEquals(response.getLessonPlanId(), 0);
     }

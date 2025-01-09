@@ -44,15 +44,15 @@ public class LessonPlanServiceImpl implements LessonPlanService {
         lessonPlan.setLessonPlanStartDate(LocalDate.now());
         lessonPlan.setLessonPlanEndDate(createLessonPlanRequest.getLessonPlanStartDate().plusDays(30));
         lessonPlan.setMaterial(createLessonPlanRequest.getMaterial());
-        lessonPlan.setLessonTool(Materials.VIDEO);
-        lessonPlan.setLessonTool(Materials.IMAGE);
+//        lessonPlan.setLessonTool(Materials.VIDEO);
+//        lessonPlan.setLessonTool(Materials.IMAGE);
         lessonPlanRepository.save(lessonPlan);
         return lessonPlan;
     }
 
     private static CreateLessonPlanResponse getCreateLessonPlanResponse(LessonPlan lessonPlan) {
         CreateLessonPlanResponse createLessonPlanResponse = new CreateLessonPlanResponse();
-        createLessonPlanResponse.setLessonPlanId(lessonPlan.getLessonPlanId());
+        createLessonPlanResponse.setLessonPlanId(lessonPlan.getId());
         createLessonPlanResponse.setLessonPlanName(lessonPlan.getLessonPlanName());
         createLessonPlanResponse.setLessonPlanDescription(lessonPlan.getLessonPlanDescription());
         createLessonPlanResponse.setLessonPlanStatus(lessonPlan.getLessonPlanStatus());

@@ -4,7 +4,7 @@ import com.project.LearnLynks.models.Role;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 
-public class AddNewStudentResponse {
+public class AddTeacherResponse {
 
     private Long id;
     private String firstName;
