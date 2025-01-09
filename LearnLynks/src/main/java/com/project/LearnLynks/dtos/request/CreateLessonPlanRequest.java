@@ -11,11 +11,11 @@ import java.util.List;
 public class CreateLessonPlanRequest {
 
 
-    public int getLessonPlanId() {
+    public Long getLessonPlanId() {
         return lessonPlanId;
     }
 
-    public void setLessonPlanId(int lessonPlanId) {
+    public void setLessonPlanId(Long lessonPlanId) {
         this.lessonPlanId = lessonPlanId;
     }
 
@@ -67,7 +67,7 @@ public class CreateLessonPlanRequest {
         this.lessonPlanStatus = lessonPlanStatus;
     }
 
-    private int lessonPlanId;
+    private Long lessonPlanId;
     private String lessonPlanName;
     private String lessonPlanDescription;
     private LocalDate lessonPlanStartDate;

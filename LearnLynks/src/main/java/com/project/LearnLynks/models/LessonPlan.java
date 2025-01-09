@@ -11,12 +11,12 @@ import java.util.List;
 
 public class LessonPlan {
 
-    public int getLessonPlanId() {
-        return lessonPlanId;
+    public Long getId() {
+        return id;
     }
 
-    public void setLessonPlanId(int lessonPlanId) {
-        this.lessonPlanId = lessonPlanId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getLessonPlanName() {
@@ -85,7 +85,7 @@ public class LessonPlan {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int lessonPlanId;
+    private Long id;
     private String lessonPlanName;
     private String lessonPlanDescription;
     private LocalDate lessonPlanStartDate;
@@ -97,14 +97,14 @@ public class LessonPlan {
     @OneToMany
     private List<LearningMaterial> material;
 
-    public Materials getLessonTool() {
-        return lessonTool;
-    }
+//    public Materials getLessonTool() {
+//        return lessonTool;
+//    }
 
-    public void setLessonTool(Materials lessonTool) {
-        this.lessonTool = lessonTool;
-    }
-
-    private Materials lessonTool;
+//    public void setLessonTool(Materials lessonTool) {
+//        this.lessonTool = lessonTool;
+//    }
+//
+//    private Materials lessonTool;
 
 }

@@ -5,5 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface LearningMaterialRepository extends JpaRepository<LearningMaterial, Long> {
 
-    LearningMaterial findByName(String name);
+    public LearningMaterial findByFileName(String fileName);
 }

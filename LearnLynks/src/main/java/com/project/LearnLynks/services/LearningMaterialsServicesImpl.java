@@ -17,11 +17,10 @@ public class LearningMaterialsServicesImpl implements LearningMaterialsServices 
 
     @Override
     public String storeFiles(MultipartFile file) throws IOException {
-        LearningMaterial files = LearningMaterial.builder()
-                .fileName(file.getOriginalFilename())
-                .fileType(file.getContentType())
-                .fileData(file.getBytes())
-                .build();
+        LearningMaterial files = new LearningMaterial();
+                files.setFileName(file.getOriginalFilename());
+                files.setFileType(file.getContentType());
+                files.setFileData(file.getBytes());
 
         files = learningMaterialRepository.save(files);
         if(files.getId() != null){
@@ -32,7 +31,7 @@ public class LearningMaterialsServicesImpl implements LearningMaterialsServices 
 
     @Override
     public byte[] downloadFile(String fileName) {
-        return learningMaterialRepository.findByName(fileName).getFileData();
+        return learningMaterialRepository.findByFileName(fileName).getFileData();
     }
 
     public void deleteFile(Long id) {
