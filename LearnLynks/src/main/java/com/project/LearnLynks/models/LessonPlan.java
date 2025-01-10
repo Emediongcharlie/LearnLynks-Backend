@@ -1,5 +1,6 @@
 package com.project.LearnLynks.models;
 
+import com.project.LearnLynks.Data.Models.Curriculum;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;

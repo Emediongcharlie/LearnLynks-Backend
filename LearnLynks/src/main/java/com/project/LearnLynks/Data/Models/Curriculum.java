@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 public class Curriculum {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int curriculumId;
+    private Long curriculumId;
     private String name;
     private String description;
     private boolean archived;
@@ -20,11 +20,11 @@ public class Curriculum {
         this.archived = archived;
     }
 
-    public int getCurriculumId() {
+    public Long getCurriculumId() {
         return curriculumId;
     }
 
-    public void setCurriculumId(int curriculumId) {
+    public void setCurriculumId(Long curriculumId) {
         this.curriculumId = curriculumId;
     }
 

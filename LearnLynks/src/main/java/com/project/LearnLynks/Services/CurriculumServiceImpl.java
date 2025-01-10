@@ -114,7 +114,7 @@ public class CurriculumServiceImpl implements CurriculumService {
     }
 
     @Override
-    public ArchiveCurriculumResponse archive(int curriculumId) {
+    public ArchiveCurriculumResponse archive(Long curriculumId) {
 
         Curriculum curriculum = curriculumRepository.findById(curriculumId)
                 .orElseThrow(() -> new RuntimeException("Curriculum not found"));
