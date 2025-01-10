@@ -1,4 +1,4 @@
-package com.project.LearnLynks.services;
+package com.project.LearnLynks.Services;
 
 
 import com.project.LearnLynks.dtos.request.*;
@@ -21,10 +21,11 @@ import java.util.Optional;
 import static com.project.LearnLynks.models.Role.*;
 
 @Service
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements com.project.LearnLynks.services.UserService {
 
     @Autowired
     private UserRepository userRepository;
+
 
 //    private BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 
@@ -68,6 +69,7 @@ public class UserServiceImpl implements UserService{
             user.setPassword(userRegisterRequest.getPassword());
             user.setUsername(userRegisterRequest.getUsername());
             userRepository.save(user);
+
 
         };
         AddTeacherResponse addTeacherResponse = new AddTeacherResponse();
