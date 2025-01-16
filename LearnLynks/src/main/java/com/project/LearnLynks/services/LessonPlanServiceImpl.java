@@ -8,15 +8,11 @@ import com.project.LearnLynks.dtos.response.AddLearningMaterialResponse;
 import com.project.LearnLynks.dtos.response.CreateLessonPlanResponse;
 import com.project.LearnLynks.dtos.response.RemoveLearningMaterialResponse;
 import com.project.LearnLynks.dtos.response.UpdateLessonPlanResponse;
-import com.project.LearnLynks.models.Curriculum;
-import com.project.LearnLynks.models.LearningMaterial;
 import com.project.LearnLynks.models.LessonPlan;
-import com.project.LearnLynks.models.Materials;
 import com.project.LearnLynks.repositories.LessonPlanRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDate;
 import java.util.List;
