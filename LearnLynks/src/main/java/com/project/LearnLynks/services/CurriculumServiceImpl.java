@@ -1,4 +1,4 @@
-package com.project.LearnLynks.Services;
+package com.project.LearnLynks.services;
 
 import com.project.LearnLynks.Data.Models.Curriculum;
 import com.project.LearnLynks.Data.Repositories.CurriculumRepository;
@@ -42,7 +42,7 @@ public class CurriculumServiceImpl implements CurriculumService {
         curriculum.setName(createCurriculumRequest.getName());
         curriculum.setDescription(createCurriculumRequest.getDescription());
         curriculum.setCreator(createCurriculumRequest.getCreator());
-
+        curriculum.setMaterials(createCurriculumRequest.getMaterials());
         Curriculum save = curriculumRepository.save(curriculum);
 
         CreateCurriculumResponse response = new CreateCurriculumResponse();
@@ -114,7 +114,7 @@ public class CurriculumServiceImpl implements CurriculumService {
     }
 
     @Override
-    public ArchiveCurriculumResponse archive(int curriculumId) {
+    public ArchiveCurriculumResponse archive(Long curriculumId) {
 
         Curriculum curriculum = curriculumRepository.findById(curriculumId)
                 .orElseThrow(() -> new RuntimeException("Curriculum not found"));

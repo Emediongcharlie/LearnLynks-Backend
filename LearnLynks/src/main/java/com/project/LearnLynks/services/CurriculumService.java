@@ -1,4 +1,4 @@
-package com.project.LearnLynks.Services;
+package com.project.LearnLynks.services;
 
 import com.project.LearnLynks.dtos.request.CreateCurriculumRequest;
 import com.project.LearnLynks.dtos.request.DeleteCurriculumRequest;
@@ -11,6 +11,6 @@ public interface CurriculumService {
     UpdateCurriculumResponse update (UpdateCurriculumRequest updateCurriculumRequest);
     FindCurriculumResponse findByName (FindCurriculumRequest findCurriculumRequest);
     FindCurriculumResponse getAll();
-    ArchiveCurriculumResponse archive(int curriculumId);
+    ArchiveCurriculumResponse archive(Long curriculumId);
     DeleteCurriculumResponse deleteCurriculum(DeleteCurriculumRequest deleteCurriculumRequest);
 }

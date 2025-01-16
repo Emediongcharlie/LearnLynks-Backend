@@ -1,7 +1,7 @@
 package com.project.LearnLynks.dtos.request;
 
 public class UpdateCurriculumRequest {
-    private int curriculumId;
+    private Long curriculumId;
 
     public String getName() {
         return name;
@@ -31,11 +31,11 @@ public class UpdateCurriculumRequest {
     private String description;
     private String creator;
 
-    public int getCurriculumId() {
+    public Long getCurriculumId() {
         return curriculumId;
     }
 
-    public void setCurriculumId(int curriculumId) {
+    public void setCurriculumId(Long curriculumId) {
         this.curriculumId = curriculumId;
     }
 }

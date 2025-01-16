@@ -1,4 +1,4 @@
-package com.project.LearnLynks.Services;
+package com.project.LearnLynks.services;
 
 import com.project.LearnLynks.Data.Models.Courses;
 import com.project.LearnLynks.Data.Repositories.CoursesRepository;

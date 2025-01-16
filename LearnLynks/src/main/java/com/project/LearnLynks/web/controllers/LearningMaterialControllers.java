@@ -1,4 +1,4 @@
-package com.project.LearnLynks.web.controllers;
+package com.project.LearnLynks.Web.controllers;
 
 import com.project.LearnLynks.dtos.request.CreateLessonPlanRequest;
 import com.project.LearnLynks.dtos.response.CreateLessonPlanResponse;
@@ -15,7 +15,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.LocalDate;
-import java.util.List;
 
 @RestController
 @RequestMapping
