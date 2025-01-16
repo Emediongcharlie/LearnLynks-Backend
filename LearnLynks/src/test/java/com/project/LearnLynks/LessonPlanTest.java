@@ -1,6 +1,6 @@
 package com.project.LearnLynks;
 
-import com.project.LearnLynks.Services.LessonPlanService;
+import com.project.LearnLynks.services.LessonPlanService;
 import com.project.LearnLynks.dtos.request.CreateLessonPlanRequest;
 import com.project.LearnLynks.dtos.response.CreateLessonPlanResponse;
 import com.project.LearnLynks.models.LessonPlan;
