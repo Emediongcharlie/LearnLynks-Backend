@@ -3,7 +3,6 @@ package com.project.LearnLynks.models;
 import jakarta.persistence.*;
 
 
-
 //import org.springframework.security.core.GrantedAuthority;
 //import org.springframework.security.core.userdetails.UserDetails;
 
