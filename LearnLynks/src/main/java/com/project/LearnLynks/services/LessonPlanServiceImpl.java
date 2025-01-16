@@ -9,6 +9,7 @@ import com.project.LearnLynks.dtos.response.AddLearningMaterialResponse;
 import com.project.LearnLynks.dtos.response.CreateLessonPlanResponse;
 import com.project.LearnLynks.dtos.response.RemoveLearningMaterialResponse;
 import com.project.LearnLynks.dtos.response.UpdateLessonPlanResponse;
+import com.project.LearnLynks.models.Curriculum;
 import com.project.LearnLynks.models.LearningMaterial;
 import com.project.LearnLynks.models.LessonPlan;
 import com.project.LearnLynks.models.Materials;
@@ -45,8 +46,7 @@ public class LessonPlanServiceImpl implements LessonPlanService {
         lessonPlan.setLessonPlanStartDate(LocalDate.now());
         lessonPlan.setLessonPlanEndDate(createLessonPlanRequest.getLessonPlanStartDate().plusDays(30));
         lessonPlan.setMaterial(createLessonPlanRequest.getMaterial());
-//        lessonPlan.setLessonTool(Materials.VIDEO);
-//        lessonPlan.setLessonTool(Materials.IMAGE);
+        lessonPlan.setCurriculumAdopted(createLessonPlanRequest.getCurriculumAdopted());
         lessonPlanRepository.save(lessonPlan);
         return lessonPlan;
     }

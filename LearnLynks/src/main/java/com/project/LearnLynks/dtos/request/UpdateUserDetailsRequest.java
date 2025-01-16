@@ -4,8 +4,7 @@ import com.project.LearnLynks.models.Role;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 
-public class UserRegisterRequest {
-
+public class UpdateUserDetailsRequest {
 
     private String firstName;
     private String lastName;
@@ -54,6 +53,14 @@ public class UserRegisterRequest {
         this.password = password;
     }
 
+    public String getConfirmPassword() {
+        return confirmPassword;
+    }
+
+    public void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
+    }
+
     public Role getRole() {
         return role;
     }
@@ -63,6 +70,7 @@ public class UserRegisterRequest {
     }
 
     private String password;
+    private String confirmPassword;
 
     @Enumerated(EnumType.STRING)
     private Role role;

@@ -1,11 +1,14 @@
 package com.project.LearnLynks.web.controllers;
 
+import com.project.LearnLynks.dtos.request.UpdateUserDetailsRequest;
 import com.project.LearnLynks.dtos.request.UserLoginRequest;
 import com.project.LearnLynks.dtos.request.UserRegisterRequest;
 import com.project.LearnLynks.dtos.response.*;
+import com.project.LearnLynks.exceptions.EmailSendingException;
 import com.project.LearnLynks.models.Users;
 import com.project.LearnLynks.repositories.UserRepository;
 import com.project.LearnLynks.services.UserService;
+import jakarta.mail.MessagingException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -67,61 +70,42 @@ public class UserController {
 
 
 
-    @PostMapping("/register-student")
-    public ResponseEntity<?> registrationStudent(@RequestBody UserRegisterRequest request){
+//    @PostMapping("/register")
+//    public ResponseEntity<?> registrationUsers(@RequestBody UserRegisterRequest request){
+//        try{
+//            UserRegisterResponse response = userService.registerUser(request);
+//            return new ResponseEntity<>(response, HttpStatus.CREATED);
+//        } catch(Exception e){
+//            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+//        }
+//    }
+
+
+    @PostMapping("/register")
+    public ResponseEntity<?> registerUser(@RequestBody UserRegisterRequest userRegisterRequest) {
+        try {
+            UserRegisterResponse response = userService.registerUser(userRegisterRequest);
+            return new ResponseEntity<>(response, HttpStatus.CREATED);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<?> loginUser(@RequestBody UserLoginRequest request){
         try{
-            AddNewStudentResponse response = userService.registerStudent(request);
+            LoginUserResponse response = userService.login(request);
             return new ResponseEntity<>(response, HttpStatus.CREATED);
         }catch(Exception e){
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }
 
-    @GetMapping("/student-login")
-    public ResponseEntity<?> loginStudents(@RequestBody UserLoginRequest request){
+    @PutMapping("/update-user")
+    public ResponseEntity<?> updateUser(@RequestBody UpdateUserDetailsRequest request){
         try{
-            LoginStudentResponse response = userService.loginStudent(request);
-            return new ResponseEntity<>(response, HttpStatus.CREATED);
-        }catch(Exception e){
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
-        }
-    }
-
-    @PostMapping("/register-teacher")
-    public ResponseEntity<?> registrationTeachers(@RequestBody UserRegisterRequest request){
-        try{
-            AddTeacherResponse response = userService.registerTeacher(request);
-            return new ResponseEntity<>(response, HttpStatus.CREATED);
-        }catch(Exception e){
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
-        }
-    }
-
-    @GetMapping("/teacher-login")
-    public ResponseEntity<?> loginTeachers(@RequestBody UserLoginRequest request){
-        try{
-            LoginTeacherResponse response = userService.loginTeacher(request);
-            return new ResponseEntity<>(response, HttpStatus.CREATED);
-        }catch(Exception e){
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
-        }
-    }
-
-    @PostMapping("/register-parent")
-    public ResponseEntity<?> registrationParents(@RequestBody UserRegisterRequest request){
-        try{
-            AddParentResponse response = userService.registerParent(request);
-            return new ResponseEntity<>(response, HttpStatus.CREATED);
-        }catch(Exception e){
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
-        }
-    }
-
-    @GetMapping("/parent-login")
-    public ResponseEntity<?> loginParent(@RequestBody UserLoginRequest request){
-        try{
-            LoginParentResponse response = userService.loginParent(request);
-            return new ResponseEntity<>(response, HttpStatus.CREATED);
+            UpdateUserDetailsResponse updateDetails = userService.updateUser(request);
+            return new ResponseEntity<>(updateDetails, HttpStatus.OK);
         }catch(Exception e){
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
