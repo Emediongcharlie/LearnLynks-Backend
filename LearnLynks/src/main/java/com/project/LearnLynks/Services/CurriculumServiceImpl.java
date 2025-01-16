@@ -42,7 +42,7 @@ public class CurriculumServiceImpl implements CurriculumService {
         curriculum.setName(createCurriculumRequest.getName());
         curriculum.setDescription(createCurriculumRequest.getDescription());
         curriculum.setCreator(createCurriculumRequest.getCreator());
-
+        curriculum.setMaterials(createCurriculumRequest.getMaterials());
         Curriculum save = curriculumRepository.save(curriculum);
 
         CreateCurriculumResponse response = new CreateCurriculumResponse();

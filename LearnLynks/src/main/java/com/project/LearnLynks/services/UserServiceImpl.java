@@ -3,21 +3,13 @@ package com.project.LearnLynks.Services;
 
 import com.project.LearnLynks.dtos.request.*;
 import com.project.LearnLynks.dtos.response.*;
-
 import com.project.LearnLynks.exceptions.EmailNotFoundException;
 import com.project.LearnLynks.exceptions.UsernameNotFoundException;
-import com.project.LearnLynks.models.Role;
 import com.project.LearnLynks.models.Users;
 import com.project.LearnLynks.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-
-//import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-//import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
 import java.util.Optional;
-
 import static com.project.LearnLynks.models.Role.*;
 
 @Service
@@ -25,9 +17,6 @@ public class UserServiceImpl implements com.project.LearnLynks.services.UserServ
 
     @Autowired
     private UserRepository userRepository;
-
-
-//    private BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 
     @Override
     public AddNewStudentResponse registerStudent(UserRegisterRequest userRegisterRequest) {
