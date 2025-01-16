@@ -1,9 +1,8 @@
-package com.project.LearnLynks.services;
+package com.project.LearnLynks.Services;
 
 
 import com.project.LearnLynks.dtos.request.*;
 import com.project.LearnLynks.dtos.response.*;
-
 import com.project.LearnLynks.exceptions.EmailNotFoundException;
 import com.project.LearnLynks.exceptions.EmailSendingException;
 import com.project.LearnLynks.exceptions.UsernameNotFoundException;
@@ -15,13 +14,14 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 
+
 //import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 //import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
-import org.springframework.stereotype.Service;
 
+import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 
@@ -38,6 +38,7 @@ public class UserServiceImpl implements UserService{
     private JavaMailSender mailSender;
     @Autowired
     private EmailService emailService;
+
 
     @Override
     public UserRegisterResponse registerUser(UserRegisterRequest userRegisterRequest) throws MessagingException {

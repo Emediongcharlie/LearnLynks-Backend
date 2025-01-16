@@ -1,7 +1,7 @@
 package com.project.LearnLynks.dtos.request;
 
 
-import com.project.LearnLynks.models.Curriculum;
+import com.project.LearnLynks.Data.Models.Curriculum;
 import com.project.LearnLynks.models.LearningMaterial;
 import jakarta.persistence.OneToMany;
 
