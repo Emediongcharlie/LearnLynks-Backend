@@ -1,15 +1,24 @@
-package com.project.LearnLynks.dtos.request;
+package com.project.LearnLynks.dtos.response;
 
 import com.project.LearnLynks.models.Role;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 
-public class UserRegisterRequest {
-
+public class UpdateUserDetailsResponse {
 
     private String firstName;
     private String lastName;
     private String email;
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    private String message;
 
     public String getUsername() {
         return username;
@@ -54,6 +63,14 @@ public class UserRegisterRequest {
         this.password = password;
     }
 
+    public String getConfirmPassword() {
+        return confirmPassword;
+    }
+
+    public void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
+    }
+
     public Role getRole() {
         return role;
     }
@@ -63,6 +80,7 @@ public class UserRegisterRequest {
     }
 
     private String password;
+    private String confirmPassword;
 
     @Enumerated(EnumType.STRING)
     private Role role;
