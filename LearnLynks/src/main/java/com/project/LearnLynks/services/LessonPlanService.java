@@ -9,9 +9,11 @@ import com.project.LearnLynks.dtos.response.CreateLessonPlanResponse;
 import com.project.LearnLynks.dtos.response.RemoveLearningMaterialResponse;
 import com.project.LearnLynks.dtos.response.UpdateLessonPlanResponse;
 import com.project.LearnLynks.models.LessonPlan;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public interface LessonPlanService {
 
     public CreateLessonPlanResponse createLessonPlan(CreateLessonPlanRequest createLessonPlanRequest);

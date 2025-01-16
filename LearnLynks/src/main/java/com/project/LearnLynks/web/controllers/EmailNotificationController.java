@@ -1,4 +1,4 @@
-package com.project.LearnLynks.web.controllers;
+package com.project.LearnLynks.Web.controllers;
 
 import com.project.LearnLynks.dtos.request.EmailSenderRequest;
 import com.project.LearnLynks.dtos.response.EmailSenderResponse;

@@ -2,7 +2,6 @@ package com.project.LearnLynks.services;
 
 import com.project.LearnLynks.models.LearningMaterial;
 import com.project.LearnLynks.repositories.LearningMaterialRepository;
-import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
