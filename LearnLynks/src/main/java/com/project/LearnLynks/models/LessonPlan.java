@@ -2,8 +2,6 @@ package com.project.LearnLynks.models;
 
 import com.project.LearnLynks.Data.Models.Curriculum;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -68,21 +66,8 @@ public class LessonPlan {
         this.lessonPlanStatus = lessonPlanStatus;
     }
 
-    public List<Curriculum> getCurriculumAdopted() {
-        return CurriculumAdopted;
-    }
 
-    public void setCurriculumAdopted(List<Curriculum> curriculumAdopted) {
-        CurriculumAdopted = curriculumAdopted;
-    }
 
-    public List<LearningMaterial> getMaterial() {
-        return material;
-    }
-
-    public void setMaterial(List<LearningMaterial> material) {
-        this.material = material;
-    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -93,19 +78,29 @@ public class LessonPlan {
     private LocalDate lessonPlanEndDate;
     private LocalDate lessonPlanDuration;
     private String lessonPlanStatus;
-    @OneToMany
-    private List<Curriculum> CurriculumAdopted;
-    @OneToMany
-    private List<LearningMaterial> material;
 
-//    public Materials getLessonTool() {
-//        return lessonTool;
-//    }
 
-//    public void setLessonTool(Materials lessonTool) {
-//        this.lessonTool = lessonTool;
-//    }
-//
-//    private Materials lessonTool;
+    public String getCurriculumAdopted() {
+        return CurriculumAdopted;
+    }
+
+    public void setCurriculumAdopted(String curriculumAdopted) {
+        CurriculumAdopted = curriculumAdopted;
+    }
+
+    private String CurriculumAdopted;
+
+    public byte[] getMaterial() {
+        return material;
+    }
+
+    public void setMaterial(byte[] material) {
+        this.material = material;
+    }
+
+    @Lob
+    private byte[] material;
+
+
 
 }

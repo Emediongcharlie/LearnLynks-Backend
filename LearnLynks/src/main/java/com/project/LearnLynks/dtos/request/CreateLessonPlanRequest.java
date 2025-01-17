@@ -75,24 +75,24 @@ public class CreateLessonPlanRequest {
     private LocalDate lessonPlanDuration;
     private String lessonPlanStatus;
 
-    public List<Curriculum> getCurriculumAdopted() {
+
+    public String getCurriculumAdopted() {
         return CurriculumAdopted;
     }
 
-    public void setCurriculumAdopted(List<Curriculum> curriculumAdopted) {
+    public void setCurriculumAdopted(String curriculumAdopted) {
         CurriculumAdopted = curriculumAdopted;
     }
 
-    public List<LearningMaterial> getMaterial() {
+    private String CurriculumAdopted;
+
+    public byte[] getMaterial() {
         return material;
     }
 
-    public void setMaterial(List<LearningMaterial> material) {
+    public void setMaterial(byte[] material) {
         this.material = material;
     }
 
-    @OneToMany
-    private List<Curriculum> CurriculumAdopted;
-    @OneToMany
-    private List<LearningMaterial> material;
+    private byte[] material;
 }

@@ -1,4 +1,4 @@
-package com.project.LearnLynks.services;
+package com.project.LearnLynks.Services;
 
 import com.project.LearnLynks.dtos.request.ProgressReportRequest;
 import com.project.LearnLynks.dtos.response.ProgressReportResponse;
