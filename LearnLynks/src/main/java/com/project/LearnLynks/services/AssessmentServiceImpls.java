@@ -2,7 +2,6 @@ package com.project.LearnLynks.services;
 
 import com.project.LearnLynks.dtos.request.CreateAssessmentRequest;
 import com.project.LearnLynks.dtos.response.CreateAssessmentResponse;
-import com.project.LearnLynks.dtos.response.CreateLessonPlanResponse;
 import com.project.LearnLynks.models.Assessment;
 import com.project.LearnLynks.models.Status;
 import com.project.LearnLynks.repositories.AssessmentRepository;

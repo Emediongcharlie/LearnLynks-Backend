@@ -1,4 +1,4 @@
-package com.project.LearnLynks.Services;
+package com.project.LearnLynks.services;
 
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
