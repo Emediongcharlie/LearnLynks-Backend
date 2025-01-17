@@ -1,4 +1,4 @@
-package com.project.LearnLynks.Services;
+package com.project.LearnLynks.services;
 
 import com.project.LearnLynks.Data.Models.Curriculum;
 import com.project.LearnLynks.Data.Repositories.CurriculumRepository;
@@ -42,6 +42,7 @@ public class CurriculumServiceImpl implements CurriculumService {
         curriculum.setName(createCurriculumRequest.getName());
         curriculum.setDescription(createCurriculumRequest.getDescription());
         curriculum.setCreator(createCurriculumRequest.getCreator());
+        curriculum.setMaterials(createCurriculumRequest.getMaterials());
 
         Curriculum save = curriculumRepository.save(curriculum);
 

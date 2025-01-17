@@ -7,6 +7,7 @@ import com.project.LearnLynks.dtos.request.DeleteCurriculumRequest;
 import com.project.LearnLynks.dtos.request.FindCurriculumRequest;
 import com.project.LearnLynks.dtos.request.UpdateCurriculumRequest;
 import com.project.LearnLynks.dtos.response.*;
+import com.project.LearnLynks.services.CurriculumService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

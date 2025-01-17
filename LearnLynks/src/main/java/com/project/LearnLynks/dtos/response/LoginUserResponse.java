@@ -1,5 +1,7 @@
 package com.project.LearnLynks.dtos.response;
 
+import com.project.LearnLynks.models.Role;
+
 public class LoginUserResponse {
 
     public String getUsername() {
@@ -20,4 +22,14 @@ public class LoginUserResponse {
 
     private String username;
     private String message;
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
+    private Role role;
 }

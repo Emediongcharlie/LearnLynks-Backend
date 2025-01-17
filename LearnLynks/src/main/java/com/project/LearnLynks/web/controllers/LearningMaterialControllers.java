@@ -2,6 +2,7 @@ package com.project.LearnLynks.web.controllers;
 
 import com.project.LearnLynks.dtos.request.CreateLessonPlanRequest;
 import com.project.LearnLynks.dtos.response.CreateLessonPlanResponse;
+import com.project.LearnLynks.models.LessonPlan;
 import com.project.LearnLynks.services.LearningMaterialsServices;
 import com.project.LearnLynks.services.LessonPlanService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,13 +44,13 @@ public class LearningMaterialControllers {
 
     @PostMapping("/lesson-plan")
     public ResponseEntity<?> lessonPlan(@RequestParam("material") MultipartFile material,
-                                             @RequestParam("lessonName") String lessonPlanName,
-                                             @RequestParam String lessonPlanDescription,
-                                             @RequestParam LocalDate lessonPlanStartDate,
-                                             @RequestParam LocalDate lessonPlanEndDate,
-                                             @RequestParam LocalDate lessonPlanDuration,
-                                             @RequestParam String lessonPlanStatus,
-                                             @RequestParam String CurriculumAdopted
+                                             @RequestParam("lessonPlanName") String lessonPlanName,
+                                             @RequestParam("lessonPlanDescription") String lessonPlanDescription,
+                                             @RequestParam("lessonPlanStartDate") LocalDate lessonPlanStartDate,
+                                             @RequestParam("lessonPlanEndDate") LocalDate lessonPlanEndDate,
+                                             @RequestParam("lessonPlanDuration") String lessonPlanDuration,
+                                             @RequestParam("lessonPlanStatus") String lessonPlanStatus,
+                                             @RequestParam("CurriculumAdopted") String CurriculumAdopted
                                              ) throws IOException {
 
         try {
@@ -69,7 +70,18 @@ public class LearningMaterialControllers {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
         catch (Exception e){
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>("successfully created lesson plan", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/get-all")
+    public ResponseEntity<List<LessonPlan>> getAllPlan(){
+        try{
+            List<LessonPlan> response = lessonPlanService.getAllLessonPlan();
+            return new ResponseEntity<>(response, HttpStatus.OK);
+        }
+        catch (Exception e){
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 

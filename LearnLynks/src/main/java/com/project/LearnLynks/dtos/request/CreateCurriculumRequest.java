@@ -10,6 +10,16 @@ public class CreateCurriculumRequest {
     private String description;
     private String creator;
 
+    public byte[] getMaterials() {
+        return materials;
+    }
+
+    public void setMaterials(byte[] materials) {
+        this.materials = materials;
+    }
+
+    private byte[] materials;
+
     public String getName() {
         return name;
     }

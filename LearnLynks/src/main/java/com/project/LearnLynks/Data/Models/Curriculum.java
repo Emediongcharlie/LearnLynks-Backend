@@ -12,6 +12,16 @@ public class Curriculum {
     private boolean archived;
     private String creator;
 
+    public byte[] getMaterials() {
+        return materials;
+    }
+
+    public void setMaterials(byte[] materials) {
+        this.materials = materials;
+    }
+
+    private byte[] materials;
+
     public boolean isArchived() {
         return archived;
     }

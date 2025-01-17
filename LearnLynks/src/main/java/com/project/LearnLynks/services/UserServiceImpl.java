@@ -79,6 +79,7 @@ public class UserServiceImpl implements UserService{
 
         LoginUserResponse loginUserResponse = new LoginUserResponse();
         loginUserResponse.setUsername(user.getUsername());
+        loginUserResponse.setRole(user.getRole());
         loginUserResponse.setMessage("Successfully logged in " +user.getUsername() + " as " + user.getRole());
         return loginUserResponse;
     }
