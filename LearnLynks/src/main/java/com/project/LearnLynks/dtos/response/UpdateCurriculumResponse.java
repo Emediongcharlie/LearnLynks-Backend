@@ -12,13 +12,13 @@ public class UpdateCurriculumResponse {
 
     private String message;
 
-    public int getCurriculumId() {
+    public Long getCurriculumId() {
         return curriculumId;
     }
 
-    public void setCurriculumId(int curriculumId) {
+    public void setCurriculumId(Long curriculumId) {
         this.curriculumId = curriculumId;
     }
 
-    private int curriculumId;
+    private Long curriculumId;
 }

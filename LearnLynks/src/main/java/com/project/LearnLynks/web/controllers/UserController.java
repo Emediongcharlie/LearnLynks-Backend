@@ -1,17 +1,13 @@
-package com.project.LearnLynks.web.controllers;
+package com.project.LearnLynks.Web.controllers;
 
 import com.project.LearnLynks.dtos.request.UpdateUserDetailsRequest;
 import com.project.LearnLynks.dtos.request.UserLoginRequest;
 import com.project.LearnLynks.dtos.request.UserRegisterRequest;
 import com.project.LearnLynks.dtos.response.*;
-import com.project.LearnLynks.exceptions.EmailSendingException;
-import com.project.LearnLynks.models.Users;
 import com.project.LearnLynks.repositories.UserRepository;
 import com.project.LearnLynks.services.UserService;
-import jakarta.mail.MessagingException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 //import org.springframework.security.core.userdetails.UserDetailsService;
@@ -21,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping
 @RequiredArgsConstructor
+@CrossOrigin("http://localhost:3000")
 public class UserController {
 
     @Autowired

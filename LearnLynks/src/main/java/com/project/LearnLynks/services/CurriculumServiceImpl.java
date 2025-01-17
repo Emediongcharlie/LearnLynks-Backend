@@ -43,7 +43,6 @@ public class CurriculumServiceImpl implements CurriculumService {
         curriculum.setDescription(createCurriculumRequest.getDescription());
         curriculum.setCreator(createCurriculumRequest.getCreator());
         curriculum.setMaterials(createCurriculumRequest.getMaterials());
-
         Curriculum save = curriculumRepository.save(curriculum);
 
         CreateCurriculumResponse response = new CreateCurriculumResponse();
@@ -115,7 +114,7 @@ public class CurriculumServiceImpl implements CurriculumService {
     }
 
     @Override
-    public ArchiveCurriculumResponse archive(int curriculumId) {
+    public ArchiveCurriculumResponse archive(Long curriculumId) {
 
         Curriculum curriculum = curriculumRepository.findById(curriculumId)
                 .orElseThrow(() -> new RuntimeException("Curriculum not found"));

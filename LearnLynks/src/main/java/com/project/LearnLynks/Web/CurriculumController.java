@@ -63,7 +63,7 @@ public class CurriculumController {
 
     @PatchMapping("/curricula/{curriculumId}/archive")
     public ArchiveCurriculumResponse archive( @PathVariable int curriculumId) {
-        return curriculumService.archive(curriculumId);
+        return curriculumService.archive((long) curriculumId);
     }
 
     @DeleteMapping("/deleteCurricula")

@@ -1,16 +1,19 @@
 package com.project.LearnLynks.Data.Models;
 
+import com.project.LearnLynks.models.Materials;
 import jakarta.persistence.*;
+import lombok.extern.java.Log;
 
 @Entity
 public class Curriculum {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int curriculumId;
+    private Long curriculumId;
     private String name;
     private String description;
     private boolean archived;
     private String creator;
+
 
     public byte[] getMaterials() {
         return materials;
@@ -20,6 +23,7 @@ public class Curriculum {
         this.materials = materials;
     }
 
+    @Lob
     private byte[] materials;
 
     public boolean isArchived() {
@@ -30,11 +34,11 @@ public class Curriculum {
         this.archived = archived;
     }
 
-    public int getCurriculumId() {
+    public Long getCurriculumId() {
         return curriculumId;
     }
 
-    public void setCurriculumId(int curriculumId) {
+    public void setCurriculumId(Long curriculumId) {
         this.curriculumId = curriculumId;
     }
 
