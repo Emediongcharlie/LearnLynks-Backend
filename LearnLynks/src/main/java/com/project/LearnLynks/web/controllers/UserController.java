@@ -1,4 +1,4 @@
-package com.project.LearnLynks.web.controllers;
+package com.project.LearnLynks.Web.controllers;
 
 import com.project.LearnLynks.dtos.request.UserLoginRequest;
 import com.project.LearnLynks.dtos.request.UserRegisterRequest;
@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping
 @RequiredArgsConstructor
+@CrossOrigin("http://localhost:3000")
 public class UserController {
 
     @Autowired

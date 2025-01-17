@@ -27,7 +27,7 @@ public class UserServiceImpl implements com.project.LearnLynks.services.UserServ
     private UserRepository userRepository;
 
 
-//    private BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+//    private BCryptPasswordEncoder = new BCryptPasswordEncoder();
 
     @Override
     public AddNewStudentResponse registerStudent(UserRegisterRequest userRegisterRequest) {
