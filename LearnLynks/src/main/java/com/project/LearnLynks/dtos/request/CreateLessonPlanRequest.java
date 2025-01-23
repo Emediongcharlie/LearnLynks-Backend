@@ -1,10 +1,6 @@
 package com.project.LearnLynks.dtos.request;
 
 
-import com.project.LearnLynks.Data.Models.Curriculum;
-import com.project.LearnLynks.models.LearningMaterial;
-import jakarta.persistence.OneToMany;
-
 import java.time.LocalDate;
 
 public class CreateLessonPlanRequest {
@@ -50,14 +46,6 @@ public class CreateLessonPlanRequest {
         this.lessonPlanEndDate = lessonPlanEndDate;
     }
 
-    public LocalDate getLessonPlanDuration() {
-        return lessonPlanDuration;
-    }
-
-    public void setLessonPlanDuration(LocalDate lessonPlanDuration) {
-        this.lessonPlanDuration = lessonPlanDuration;
-    }
-
     public String getLessonPlanStatus() {
         return lessonPlanStatus;
     }
@@ -71,7 +59,16 @@ public class CreateLessonPlanRequest {
     private String lessonPlanDescription;
     private LocalDate lessonPlanStartDate;
     private LocalDate lessonPlanEndDate;
-    private LocalDate lessonPlanDuration;
+
+    public String getLessonPlanDuration() {
+        return lessonPlanDuration;
+    }
+
+    public void setLessonPlanDuration(String lessonPlanDuration) {
+        this.lessonPlanDuration = lessonPlanDuration;
+    }
+
+    private String lessonPlanDuration;
     private String lessonPlanStatus;
 
 

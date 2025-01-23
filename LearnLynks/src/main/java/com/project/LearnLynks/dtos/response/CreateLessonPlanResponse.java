@@ -47,14 +47,6 @@ public class CreateLessonPlanResponse {
         this.lessonPlanEndDate = lessonPlanEndDate;
     }
 
-    public LocalDate getLessonPlanDuration() {
-        return lessonPlanDuration;
-    }
-
-    public void setLessonPlanDuration(LocalDate lessonPlanDuration) {
-        this.lessonPlanDuration = lessonPlanDuration;
-    }
-
     public String getLessonPlanStatus() {
         return lessonPlanStatus;
     }
@@ -76,7 +68,16 @@ public class CreateLessonPlanResponse {
     private String lessonPlanDescription;
     private LocalDate lessonPlanStartDate;
     private LocalDate lessonPlanEndDate;
-    private LocalDate lessonPlanDuration;
+
+    public String getLessonPlanDuration() {
+        return lessonPlanDuration;
+    }
+
+    public void setLessonPlanDuration(String lessonPlanDuration) {
+        this.lessonPlanDuration = lessonPlanDuration;
+    }
+
+    private String lessonPlanDuration;
     private String lessonPlanStatus;
     private String message;
 }

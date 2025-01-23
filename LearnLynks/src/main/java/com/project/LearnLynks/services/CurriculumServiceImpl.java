@@ -70,12 +70,13 @@ public class CurriculumServiceImpl implements CurriculumService {
             throw new IllegalArgumentException("Course name is required");
         }
 
-        Curriculum curriculum = curriculumRepository.findById(updateCurriculumRequest.getCurriculumId())
+        Curriculum curriculum = curriculumRepository.findByName(updateCurriculumRequest.getName())
                 .orElseThrow(() -> new RuntimeException("Curriculum not found"));
 
         curriculum.setName(updateCurriculumRequest.getName());
         curriculum.setDescription(updateCurriculumRequest.getDescription());
         curriculum.setCreator(updateCurriculumRequest.getCreator());
+        curriculum.setMaterials(updateCurriculumRequest.getMaterials());
 
         Curriculum update = curriculumRepository.save(curriculum);
 
@@ -132,7 +133,7 @@ public class CurriculumServiceImpl implements CurriculumService {
 
     @Override
     public DeleteCurriculumResponse deleteCurriculum(DeleteCurriculumRequest deleteCurriculumRequest) {
-        Curriculum curriculum = curriculumRepository.findById(deleteCurriculumRequest.getCurriculumId())
+        Curriculum curriculum = curriculumRepository.findByName(deleteCurriculumRequest.getName())
                 .orElseThrow(() -> new RuntimeException("Curriculum not found"));
 
         curriculumRepository.delete(curriculum);

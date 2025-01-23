@@ -8,6 +8,16 @@ public class UserRegisterResponse {
 
         private Long id;
 
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
+    private Role role;
+
 
 
     public String getMessage() {

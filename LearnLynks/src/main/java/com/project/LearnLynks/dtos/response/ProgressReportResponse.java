@@ -1,17 +1,32 @@
 package com.project.LearnLynks.dtos.response;
 
-import com.project.LearnLynks.models.Assessment;
+import com.project.LearnLynks.models.Grades;
+import com.project.LearnLynks.models.LessonPlan;
 import com.project.LearnLynks.models.Status;
+import com.project.LearnLynks.models.Users;
 import jakarta.persistence.ManyToOne;
-import lombok.Getter;
-import lombok.Setter;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 
 import java.time.LocalDate;
-
+import java.util.List;
 
 public class ProgressReportResponse {
 
     private Long id;
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
+    private Long userId;
+    private Status status;
+    private LocalDate reportDate;
+    private String recommendation;
 
     public Long getId() {
         return id;
@@ -21,45 +36,6 @@ public class ProgressReportResponse {
         this.id = id;
     }
 
-    public int getNoOfTaskCompleted() {
-        return noOfTaskCompleted;
-    }
-
-    public void setNoOfTaskCompleted(int noOfTaskCompleted) {
-        this.noOfTaskCompleted = noOfTaskCompleted;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    public LocalDate getDaysSinceStart() {
-        return daysSinceStart;
-    }
-
-    public void setDaysSinceStart(LocalDate daysSinceStart) {
-        this.daysSinceStart = daysSinceStart;
-    }
-
-    public LocalDate getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(LocalDate endDate) {
-        this.endDate = endDate;
-    }
-
-    public LocalDate getStartDate() {
-        return startDate;
-    }
-
-    public void setStartDate(LocalDate startDate) {
-        this.startDate = startDate;
-    }
 
     public Status getStatus() {
         return status;
@@ -69,29 +45,70 @@ public class ProgressReportResponse {
         this.status = status;
     }
 
-    public Assessment getAssessment() {
-        return assessment;
+    public LocalDate getReportDate() {
+        return reportDate;
     }
 
-    public void setAssessment(Assessment assessment) {
-        this.assessment = assessment;
+    public void setReportDate(LocalDate reportDate) {
+        this.reportDate = reportDate;
     }
 
-    public Long getUsersId() {
-        return usersId;
+    public String getRecommendation() {
+        return recommendation;
     }
 
-    public void setUsersId(Long usersId) {
-        this.usersId = usersId;
+    public void setRecommendation(String recommendation) {
+        this.recommendation = recommendation;
     }
 
-    private Long usersId;
+    public String getWeakness() {
+        return weakness;
+    }
+
+    public void setWeakness(String weakness) {
+        this.weakness = weakness;
+    }
+
+    public String getStrength() {
+        return strength;
+    }
+
+    public void setStrength(String strength) {
+        this.strength = strength;
+    }
+
+    public LessonPlan getLessonPlan() {
+        return lessonPlan;
+    }
+
+    public void setLessonPlan(LessonPlan lessonPlan) {
+        this.lessonPlan = lessonPlan;
+    }
+
     @ManyToOne
-    private Assessment assessment;
-    private Status status;
-    private LocalDate startDate;
-    private LocalDate endDate;
-    private LocalDate daysSinceStart;
+    private LessonPlan lessonPlan;
+    private String weakness;
+    private String strength;
+    public Grades getGrade() {
+        return grade;
+    }
+
+    public void setGrade(Grades grade) {
+        this.grade = grade;
+    }
+
+    private Grades grade;
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
     private String message;
-    private int noOfTaskCompleted;
+
+
+
 }

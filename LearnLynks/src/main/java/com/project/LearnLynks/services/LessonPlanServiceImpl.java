@@ -1,13 +1,7 @@
 package com.project.LearnLynks.services;
 
-import com.project.LearnLynks.dtos.request.AddLearningMaterialRequest;
-import com.project.LearnLynks.dtos.request.CreateLessonPlanRequest;
-import com.project.LearnLynks.dtos.request.RemoveLearningMaterialRequest;
-import com.project.LearnLynks.dtos.request.UpdateLessonPlanRequest;
-import com.project.LearnLynks.dtos.response.AddLearningMaterialResponse;
-import com.project.LearnLynks.dtos.response.CreateLessonPlanResponse;
-import com.project.LearnLynks.dtos.response.RemoveLearningMaterialResponse;
-import com.project.LearnLynks.dtos.response.UpdateLessonPlanResponse;
+import com.project.LearnLynks.dtos.request.*;
+import com.project.LearnLynks.dtos.response.*;
 import com.project.LearnLynks.models.LessonPlan;
 import com.project.LearnLynks.repositories.LessonPlanRepository;
 import lombok.RequiredArgsConstructor;
@@ -37,7 +31,7 @@ public class LessonPlanServiceImpl implements LessonPlanService {
         lessonPlan.setLessonPlanName(createLessonPlanRequest.getLessonPlanName());
         lessonPlan.setLessonPlanDescription(createLessonPlanRequest.getLessonPlanDescription());
         lessonPlan.setLessonPlanStatus(createLessonPlanRequest.getLessonPlanStatus());
-        lessonPlan.setLessonPlanDuration(createLessonPlanRequest.getLessonPlanDuration().plusMonths(1));
+        lessonPlan.setLessonPlanDuration(createLessonPlanRequest.getLessonPlanDuration());
         lessonPlan.setLessonPlanStartDate(LocalDate.now());
         lessonPlan.setLessonPlanEndDate(createLessonPlanRequest.getLessonPlanStartDate().plusDays(30));
         lessonPlan.setMaterial(createLessonPlanRequest.getMaterial());
@@ -78,9 +72,46 @@ public class LessonPlanServiceImpl implements LessonPlanService {
         return lessonPlan;
     }
 
+    public DeleteLessonPlanResponse deleteLessonPlanByName(String lessonPlanName) {
+        Optional<LessonPlan> lessonPlan = lessonPlanRepository.findByLessonPlanName(lessonPlanName);
+        if (lessonPlan.isPresent()) {
+            lessonPlanRepository.delete(lessonPlan.get());
+            DeleteLessonPlanResponse deleteLessonPlanResponse = new DeleteLessonPlanResponse();
+            deleteLessonPlanResponse.setMessage("Successfully deleted");
+            return deleteLessonPlanResponse;
+        }
+        return  null;
+    }
+
     @Override
     public UpdateLessonPlanResponse updateLessonPlan(UpdateLessonPlanRequest updateLessonPlan) {
-        return null;
+        if(updateLessonPlan == null){
+            throw new IllegalArgumentException("Update LessonPlan required");
+        }
+        if(updateLessonPlan.getLessonPlanName() == null){
+            throw new IllegalArgumentException("LessonPlan name required");
+        }
+        if(updateLessonPlan.getLessonPlanDescription() == null){
+            throw new IllegalArgumentException("LessonPlan description required");
+        }
+        LessonPlan lesson = lessonPlanRepository.findByLessonPlanName(updateLessonPlan.getLessonPlanName())
+                .orElseThrow(() -> new IllegalArgumentException("LessonPlan not found"));
+
+        lesson.setLessonPlanName(updateLessonPlan.getLessonPlanName());
+        lesson.setLessonPlanDescription(updateLessonPlan.getLessonPlanDescription());
+        lesson.setLessonPlanStatus(updateLessonPlan.getLessonPlanStatus());
+        lesson.setLessonPlanDuration(updateLessonPlan.getLessonPlanDuration());
+        lesson.setLessonPlanStartDate(updateLessonPlan.getLessonPlanStartDate());
+        lesson.setLessonPlanEndDate(updateLessonPlan.getLessonPlanEndDate());
+        lesson.setCurriculumAdopted(updateLessonPlan.getCurriculumAdopted());
+        lesson.setMaterial(updateLessonPlan.getMaterial());
+        lessonPlanRepository.save(lesson);
+
+        UpdateLessonPlanResponse updateLessonPlanResponse = new UpdateLessonPlanResponse();
+        updateLessonPlanResponse.setMessage("Successfully updated");
+        return updateLessonPlanResponse;
+
+
     }
 
     @Override

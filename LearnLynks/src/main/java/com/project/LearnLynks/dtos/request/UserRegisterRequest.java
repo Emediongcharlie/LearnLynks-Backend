@@ -1,8 +1,16 @@
 package com.project.LearnLynks.dtos.request;
 
+import com.project.LearnLynks.models.LessonPlan;
 import com.project.LearnLynks.models.Role;
+import com.project.LearnLynks.models.Status;
+import com.project.LearnLynks.models.Users;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
+
+import java.time.LocalDate;
+import java.util.List;
 
 public class UserRegisterRequest {
 
@@ -66,4 +74,6 @@ public class UserRegisterRequest {
 
     @Enumerated(EnumType.STRING)
     private Role role;
+
+
 }

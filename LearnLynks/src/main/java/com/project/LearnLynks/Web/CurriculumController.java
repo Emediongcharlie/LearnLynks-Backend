@@ -1,5 +1,6 @@
-package com.project.LearnLynks.Web;
+package com.project.LearnLynks.web;
 
+import com.project.LearnLynks.Data.Repositories.CurriculumRepository;
 import com.project.LearnLynks.services.CurriculumService;
 import com.project.LearnLynks.dtos.request.CreateCurriculumRequest;
 import com.project.LearnLynks.dtos.request.DeleteCurriculumRequest;
@@ -20,12 +21,14 @@ public class CurriculumController {
 
     @Autowired
     private CurriculumService curriculumService;
+    @Autowired
+    private CurriculumRepository curriculumRepository;
 
     @PostMapping("/create")
     public ResponseEntity<?> create (@RequestParam("materials") MultipartFile material,
-                                     @RequestParam ("name") String name,
-                                     @RequestParam ("description") String description,
-                                     @RequestParam ("creator") String creator) throws IOException {
+                                  @RequestParam ("name") String name,
+                                  @RequestParam ("description") String description,
+                                  @RequestParam ("creator") String creator) throws IOException {
 
         try {
             CreateCurriculumRequest request = new CreateCurriculumRequest();
@@ -38,14 +41,33 @@ public class CurriculumController {
             CreateCurriculumResponse response = curriculumService.create(request);
             response.setMessage("Successfully created curriculum");
             return new ResponseEntity<>(response, HttpStatus.CREATED);
-        } catch (Exception e) {
+
+        }catch (Exception e){
+
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }
 
     @PutMapping("/update")
-    public UpdateCurriculumResponse update (@RequestBody UpdateCurriculumRequest updateCurriculumRequest) {
-        return curriculumService.update(updateCurriculumRequest);
+    public ResponseEntity<?> updateCurriculum (@RequestParam("materials") MultipartFile material,
+                                     @RequestParam ("name") String name,
+                                     @RequestParam ("description") String description,
+                                     @RequestParam ("creator") String creator) throws IOException {
+
+        try {
+            UpdateCurriculumRequest request = new UpdateCurriculumRequest();
+
+            request.setName(name);
+            request.setDescription(description);
+            request.setCreator(creator);
+            request.setMaterials(material.getBytes());
+
+            UpdateCurriculumResponse response = curriculumService.update(request);
+            response.setMessage("Successfully updated curriculum");
+            return new ResponseEntity<>(response, HttpStatus.CREATED);
+        }catch (Exception e){
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
     }
 
     @GetMapping("/findByName")
@@ -59,12 +81,22 @@ public class CurriculumController {
     }
 
     @PatchMapping("/curricula/{curriculumId}/archive")
-    public ArchiveCurriculumResponse archive( @PathVariable Long curriculumId) {
-        return curriculumService.archive(curriculumId);
+    public ArchiveCurriculumResponse archive( @PathVariable int curriculumId) {
+        return curriculumService.archive((long) curriculumId);
     }
 
     @DeleteMapping("/deleteCurricula")
-    public DeleteCurriculumResponse deleteCurriculum( @RequestBody DeleteCurriculumRequest deleteCurriculumRequest) {
-        return curriculumService.deleteCurriculum(deleteCurriculumRequest);
+    public ResponseEntity<DeleteCurriculumResponse> deleteCurriculum( @RequestBody DeleteCurriculumRequest deleteCurriculumRequest) {
+        try{
+            System.out.println("Received DELETE request with name: " + deleteCurriculumRequest.getName());
+            DeleteCurriculumResponse response = curriculumService.deleteCurriculum(deleteCurriculumRequest);
+            return new ResponseEntity<>(response, HttpStatus.OK);
+        }catch (Exception e){
+            System.err.println("Error deleting curriculum: " + e.getMessage());
+            DeleteCurriculumResponse response = new DeleteCurriculumResponse();
+            response.setMessage("Error deleting curriculum");
+            return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+        }
+
     }
 }

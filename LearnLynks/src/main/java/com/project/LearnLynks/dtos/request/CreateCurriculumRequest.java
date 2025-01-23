@@ -1,12 +1,14 @@
 package com.project.LearnLynks.dtos.request;
 
-import com.project.LearnLynks.models.Materials;
+import com.project.LearnLynks.Data.Models.Courses;
+
+import java.time.LocalDate;
+import java.util.List;
 
 public class CreateCurriculumRequest {
     private String name;
     private String description;
     private String creator;
-
 
     public byte[] getMaterials() {
         return materials;

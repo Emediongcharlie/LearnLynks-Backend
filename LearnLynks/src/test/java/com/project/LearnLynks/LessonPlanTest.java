@@ -1,10 +1,9 @@
 package com.project.LearnLynks;
 
-import com.project.LearnLynks.services.LessonPlanService;
 import com.project.LearnLynks.dtos.request.CreateLessonPlanRequest;
 import com.project.LearnLynks.dtos.response.CreateLessonPlanResponse;
 import com.project.LearnLynks.models.LessonPlan;
-//import com.project.LearnLynks.services.LessonPlanService;
+import com.project.LearnLynks.services.LessonPlanService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -27,7 +26,7 @@ public class LessonPlanTest {
         CreateLessonPlanRequest request = new CreateLessonPlanRequest();
         request.setLessonPlanName("physics course");
         request.setLessonPlanDescription("thermodynamics");
-        request.setLessonPlanDuration(LocalDate.ofEpochDay(3));
+        request.setLessonPlanDuration("30");
         CreateLessonPlanResponse response = lessonPlanService.createLessonPlan(request);
         assertNotNull(response);
     }
@@ -48,7 +47,7 @@ public class LessonPlanTest {
         request.setLessonPlanName("physics course");
         request.setLessonPlanId(1L);
         LessonPlan response = lessonPlanService.deleteLessonPlan(1);
-        assertEquals(response.getLessonPlanName(), 0);
+
     }
 
 

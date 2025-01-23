@@ -2,8 +2,6 @@ package com.project.LearnLynks.models;
 
 import com.project.LearnLynks.Data.Models.User;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
 
 import java.time.LocalDate;
 import java.util.List;

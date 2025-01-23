@@ -1,13 +1,14 @@
 package com.project.LearnLynks.dtos.request;
 
 public class DeleteCurriculumRequest {
-    public Long getCurriculumId() {
-        return curriculumId;
+
+    public String getName() {
+        return name;
     }
 
-    public void setCurriculumId(Long curriculumId) {
-        this.curriculumId = curriculumId;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    private Long curriculumId;
+    private String name;
 }
