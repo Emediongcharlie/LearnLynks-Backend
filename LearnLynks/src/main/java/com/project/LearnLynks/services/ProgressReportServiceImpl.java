@@ -92,8 +92,9 @@ public class ProgressReportServiceImpl implements ProgressReportService {
             response.setUserId(savedReport.getUser().getId());
             response.setStatus(savedReport.getStatus());
             response.setReportDate(savedReport.getReportDate());
-            response.setLessonPlan(savedReport.getLessonPlan().getLessonPlanName());
+//            response.setLessonPlan(savedReport.getLessonPlan().getLessonPlanName());
             response.setGrade(savedReport.getGrade());
+
             response.setStrength(savedReport.getStrength() != null ? savedReport.getStrength().toString() : "None");
             response.setWeakness(savedReport.getWeakness() != null ? savedReport.getWeakness().toString() : "None");
             response.setRecommendation(savedReport.getRecommendation());
