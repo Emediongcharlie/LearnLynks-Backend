@@ -4,9 +4,9 @@ import com.project.LearnLynks.dtos.request.EmailSenderRequest;
 import com.project.LearnLynks.dtos.request.ProgressReportRequest;
 import com.project.LearnLynks.dtos.response.EmailSenderResponse;
 import com.project.LearnLynks.dtos.response.ProgressReportResponse;
-import com.project.LearnLynks.models.ProgressReport;
-import com.project.LearnLynks.models.Status;
-import com.project.LearnLynks.models.Users;
+import com.project.LearnLynks.exceptions.UserNotFoundException;
+import com.project.LearnLynks.models.*;
+import com.project.LearnLynks.repositories.LessonPlanRepository;
 import com.project.LearnLynks.repositories.ProgressReportRepository;
 import com.project.LearnLynks.repositories.UserRepository;
 import jakarta.mail.MessagingException;
@@ -32,35 +32,74 @@ public class ProgressReportServiceImpl implements ProgressReportService {
     private UserRepository userRepository;
     @Autowired
     private JavaMailSender javaMailSender;
+    @Autowired
+    private LessonPlanRepository lessonPlanRepository;
 
     @Override
     public ProgressReportResponse generateProgressReport(ProgressReportRequest progressReportRequest) {
+//        Users users = new Users();
+        ProgressReport progressReport = new ProgressReport();
+        Optional<Users> userOptional = userRepository.findById(progressReportRequest.getUserId());
+        {
+            if (!userOptional.isPresent()) {
+                throw new UserNotFoundException("user not found" + progressReportRequest.getUserId());
+            }
+            Users user = userOptional.get();
+            Optional<LessonPlan> lessonPlanOptional = lessonPlanRepository.findById(progressReportRequest.getLessonPlanId());
+            if (!lessonPlanOptional.isPresent()) {
+                throw new IllegalArgumentException("Lesson Plan not found with ID: " + progressReportRequest.getLessonPlanId());
+            }
+            LessonPlan lessonPlan = lessonPlanOptional.get();
+            progressReport.setLessonPlan(lessonPlan);
 
-        Optional<Users> user = userRepository.findById(progressReportRequest.getId());
-        if (user.isPresent()) {
-            ProgressReport progressReport = new ProgressReport();
-            progressReport.setId(progressReportRequest.getId());
-            progressReport.setAssessment(progressReportRequest.getAssessment());
-            progressReport.setStartDate(LocalDate.now());
-            progressReport.setEndDate(progressReportRequest.getEndDate().plusMonths(1));
-            progressReport.setStatus(Status.ACTIVE);
-            progressReportRepository.save(progressReport);
-            ProgressReportResponse progressReportResponse = getProgressReportResponse(progressReport);
-            return progressReportResponse;
+            progressReport.setUser(user);
+            progressReport.setStatus(progressReportRequest.getStatus());
+            progressReport.setReportDate(LocalDate.now());
+            progressReport.setLessonPlan(lessonPlan);
+            progressReport.setRecommendation(progressReportRequest.getRecommendation());
+            progressReport.setGrade(progressReportRequest.getGrade());
+
+            switch (progressReport.getGrade()) {
+                case A:
+                    progressReport.setStrength(Ability.great_one);
+                    break;
+                case B:
+                    progressReport.setStrength(Ability.Good_at_who_grasping_new_concepts_easily);
+                    break;
+                case C:
+                    progressReport.setStrength(Ability.Great_learner_but_needs_more_time_and_repetition);
+                    break;
+                case D:
+                    progressReport.setStrength(Ability.Low_test_scores_and_grades_put_more_effort);
+                    progressReport.setWeakness(Ability.Poor_analytical_skill);
+                    break;
+                case E:
+                    progressReport.setStrength(Ability.Low_test_scores_and_grades_put_more_effort);
+                    progressReport.setWeakness(Ability.Struggling_to_grasp_key_ideas_in_a_particular_subject_area);
+                    break;
+                case F:
+                    progressReport.setStrength(Ability.Struggling_to_grasp_key_ideas_in_a_particular_subject_area);
+                    progressReport.setWeakness(Ability.Poor_analytical_skill);
+                    break;
+                default:
+                    throw new IllegalArgumentException("Invalid grade: " + progressReport.getGrade());
+            }
+
+            ProgressReport savedReport = progressReportRepository.save(progressReport);
+
+            ProgressReportResponse response = new ProgressReportResponse();
+            response.setId(savedReport.getProgressId());
+            response.setUserId(savedReport.getUser().getId());
+            response.setStatus(savedReport.getStatus());
+            response.setReportDate(savedReport.getReportDate());
+            response.setLessonPlan(savedReport.getLessonPlan().getLessonPlanName());
+            response.setGrade(savedReport.getGrade());
+            response.setStrength(savedReport.getStrength() != null ? savedReport.getStrength().toString() : "None");
+            response.setWeakness(savedReport.getWeakness() != null ? savedReport.getWeakness().toString() : "None");
+            response.setRecommendation(savedReport.getRecommendation());
+
+            return response;
         }
-        throw new IllegalArgumentException("User not found");
-    }
-
-    private static ProgressReportResponse getProgressReportResponse(ProgressReport progressReport) {
-        ProgressReportResponse progressReportResponse = new ProgressReportResponse();
-        progressReportResponse.setId(progressReport.getId());
-        progressReportResponse.setAssessment(progressReport.getAssessment());
-        progressReportResponse.setStartDate(progressReport.getStartDate());
-        progressReportResponse.setEndDate(progressReport.getEndDate());
-        progressReportResponse.setStatus(Status.ACTIVE);
-        progressReportResponse.setMessage("Successfully generated progress report");
-
-        return progressReportResponse;
     }
 
     public EmailSenderResponse sendEmail(EmailSenderRequest emailSenderRequest) {

@@ -1,43 +1,75 @@
 package com.project.LearnLynks.models;
 
-
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
-
 import java.time.LocalDate;
-
+import java.util.List;
 
 @Entity
 public class ProgressReport {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private Long usersId;
+    private Long progressId;
 
-    public Long getId() {
-        return id;
+    @OneToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    private Users user;
+
+//    public Long getUserId() {
+//        return userId;
+//    }
+//
+//    public void setUserId(Long userId) {
+//        this.userId = userId;
+//    }
+//
+//    private Long userId;
+
+    public Users getUser() {
+        return user;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setUser(Users user) {
+        this.user = user;
     }
 
-    public Long getUsersId() {
-        return usersId;
+    public Long getLessonPlanId() {
+        return lessonPlanId;
     }
 
-    public void setUsersId(Long usersId) {
-        this.usersId = usersId;
+    public void setLessonPlanId(Long lessonPlanId) {
+        this.lessonPlanId = lessonPlanId;
     }
 
-    public Assessment getAssessment() {
-        return assessment;
+    private Long lessonPlanId;
+
+    private Status status;
+    private LocalDate reportDate;
+    private String recommendation;
+
+    public LessonPlan getLessonPlan() {
+        return lessonPlan;
     }
 
-    public void setAssessment(Assessment assessment) {
-        this.assessment = assessment;
+    public void setLessonPlan(LessonPlan lessonPlan) {
+        this.lessonPlan = lessonPlan;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "lesson_plan_id", referencedColumnName = "lesson_plan_id")
+    private LessonPlan lessonPlan;
+
+    private Ability weakness;
+    private Ability strength;
+    private Grades grade;
+
+    // Getters and Setters
+    public Long getProgressId() {
+        return progressId;
+    }
+
+    public void setProgressId(Long progressId) {
+        this.progressId = progressId;
     }
 
     public Status getStatus() {
@@ -48,52 +80,43 @@ public class ProgressReport {
         this.status = status;
     }
 
-    public LocalDate getStartDate() {
-        return startDate;
+    public LocalDate getReportDate() {
+        return reportDate;
     }
 
-    public void setStartDate(LocalDate startDate) {
-        this.startDate = startDate;
+    public void setReportDate(LocalDate reportDate) {
+        this.reportDate = reportDate;
     }
 
-    public LocalDate getEndDate() {
-        return endDate;
+    public String getRecommendation() {
+        return recommendation;
     }
 
-    public void setEndDate(LocalDate endDate) {
-        this.endDate = endDate;
+    public void setRecommendation(String recommendation) {
+        this.recommendation = recommendation;
     }
 
-    public LocalDate getDaysSinceStart() {
-        return daysSinceStart;
+    public Ability getWeakness() {
+        return weakness;
     }
 
-    public void setDaysSinceStart(LocalDate daysSinceStart) {
-        this.daysSinceStart = daysSinceStart;
+    public void setWeakness(Ability weakness) {
+        this.weakness = weakness;
     }
 
-    public String getMessage() {
-        return message;
+    public Ability getStrength() {
+        return strength;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
+    public void setStrength(Ability strength) {
+        this.strength = strength;
     }
 
-    public int getNoOfTaskCompleted() {
-        return noOfTaskCompleted;
+    public Grades getGrade() {
+        return grade;
     }
 
-    public void setNoOfTaskCompleted(int noOfTaskCompleted) {
-        this.noOfTaskCompleted = noOfTaskCompleted;
+    public void setGrade(Grades grade) {
+        this.grade = grade;
     }
-
-    @ManyToOne
-    private Assessment assessment;
-    private Status status;
-    private LocalDate startDate;
-    private LocalDate endDate;
-    private LocalDate daysSinceStart;
-    private String message;
-    private int noOfTaskCompleted;
 }

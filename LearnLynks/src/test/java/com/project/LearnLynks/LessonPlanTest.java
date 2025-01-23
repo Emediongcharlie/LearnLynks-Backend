@@ -26,7 +26,7 @@ public class LessonPlanTest {
         CreateLessonPlanRequest request = new CreateLessonPlanRequest();
         request.setLessonPlanName("physics course");
         request.setLessonPlanDescription("thermodynamics");
-        request.setLessonPlanDuration(LocalDate.ofEpochDay(3));
+        request.setLessonPlanDuration("30");
         CreateLessonPlanResponse response = lessonPlanService.createLessonPlan(request);
         assertNotNull(response);
     }
