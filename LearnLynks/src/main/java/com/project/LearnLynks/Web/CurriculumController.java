@@ -41,7 +41,9 @@ public class CurriculumController {
             CreateCurriculumResponse response = curriculumService.create(request);
             response.setMessage("Successfully created curriculum");
             return new ResponseEntity<>(response, HttpStatus.CREATED);
+
         }catch (Exception e){
+
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }

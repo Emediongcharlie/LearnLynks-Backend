@@ -2,6 +2,7 @@ package com.project.LearnLynks.Web.controllers;
 
 import com.project.LearnLynks.dtos.request.EmailSenderRequest;
 import com.project.LearnLynks.dtos.response.EmailSenderResponse;
+import com.project.LearnLynks.services.ProgressReportService;
 import com.project.LearnLynks.services.ProgressReportServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -26,6 +27,11 @@ public class EmailNotificationController {
         }catch (Exception e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+
+    @PostMapping("/send")
+    public EmailSenderResponse sendEmail(@RequestBody EmailSenderRequest emailSenderRequest) {
+        return progressReportService.sendEmail(emailSenderRequest);
     }
 
 }

@@ -2,6 +2,7 @@ package com.project.LearnLynks.models;
 
 import jakarta.persistence.*;
 
+
 @Entity
 public class Users {
 

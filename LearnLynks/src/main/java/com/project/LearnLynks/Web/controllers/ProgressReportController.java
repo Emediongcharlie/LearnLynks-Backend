@@ -12,12 +12,15 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RequestMapping
+
 @RestController
+@RequestMapping("/api/progress-reports")
+
 public class ProgressReportController {
 
     @Autowired
     private ProgressReportService progressReportService;
+
 
     @PostMapping("/reports")
     public ResponseEntity<?> report(@RequestBody ProgressReportRequest progressReportRequest) {

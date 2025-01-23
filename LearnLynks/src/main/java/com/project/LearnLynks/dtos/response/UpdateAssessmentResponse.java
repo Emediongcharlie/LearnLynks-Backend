@@ -1,20 +1,11 @@
-package com.project.LearnLynks.models;
-
-import com.project.LearnLynks.Data.Models.User;
-import jakarta.persistence.*;
+package com.project.LearnLynks.dtos.response;
 
 import java.time.LocalDate;
-import java.util.List;
 
-
-@Entity
-public class Assessment {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class UpdateAssessmentResponse {
     private Long assessmentId;
     private Long id;
-    @ManyToOne
-    private LessonPlan lessonPlan;
+    private Long lessonPlanId;
     private LocalDate completionDate;
     private Double averageScore;
     private Double timeSpent;
@@ -37,12 +28,12 @@ public class Assessment {
         this.id = id;
     }
 
-    public LessonPlan getLessonPlan() {
-        return lessonPlan;
+    public Long getLessonPlanId() {
+        return lessonPlanId;
     }
 
-    public void setLessonPlan(LessonPlan lessonPlan) {
-        this.lessonPlan = lessonPlan;
+    public void setLessonPlanId(Long lessonPlanId) {
+        this.lessonPlanId = lessonPlanId;
     }
 
     public LocalDate getCompletionDate() {

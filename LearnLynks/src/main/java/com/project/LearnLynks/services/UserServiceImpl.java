@@ -3,6 +3,7 @@ package com.project.LearnLynks.services;
 
 import com.project.LearnLynks.dtos.request.*;
 import com.project.LearnLynks.dtos.response.*;
+
 import com.project.LearnLynks.exceptions.EmailNotFoundException;
 import com.project.LearnLynks.exceptions.EmailSendingException;
 import com.project.LearnLynks.exceptions.UsernameNotFoundException;
@@ -14,14 +15,13 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 
-
 //import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 //import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
-
 import org.springframework.stereotype.Service;
+
 import java.util.Optional;
 
 
@@ -38,7 +38,8 @@ public class UserServiceImpl implements UserService{
     private JavaMailSender mailSender;
     @Autowired
     private EmailService emailService;
-
+    @Autowired
+    private LoginLogService loginLogService;
 
     @Override
     public UserRegisterResponse registerUser(UserRegisterRequest userRegisterRequest) throws MessagingException {
@@ -136,8 +137,8 @@ public class UserServiceImpl implements UserService{
             mailMessage.setSubject(subject);
             mailMessage.setText(body);
             mailSender.send(mailMessage);
-    }catch(Exception e){
-        throw new EmailSendingException("Failed to sent email");}
+        }catch(Exception e){
+            throw new EmailSendingException("Failed to sent email");}
     }
 
     public void sendEmail(String to, String subject, String body) throws MessagingException {
@@ -153,5 +154,10 @@ public class UserServiceImpl implements UserService{
         }
     }
 
-
+    @Override
+    public LogoutUserResponse logout(Long id) {
+        LogoutUserResponse response = new LogoutUserResponse();
+        response.setMessage("Logged out successfully");
+        return response;
+    }
 }

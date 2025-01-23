@@ -8,9 +8,25 @@ import jakarta.persistence.Id;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDate;
 
-@Entity
 public class CreateAssessmentResponse {
+    private Long assessmentId;
+    private Long id;
+    private Long lessonPlanId;
+    private LocalDate completionDate;
+    private Double averageScore;
+    private Double timeSpent;
+    private Double totalScore;
+    private String grade;
+
+    public Long getAssessmentId() {
+        return assessmentId;
+    }
+
+    public void setAssessmentId(Long assessmentId) {
+        this.assessmentId = assessmentId;
+    }
 
     public Long getId() {
         return id;
@@ -20,43 +36,51 @@ public class CreateAssessmentResponse {
         this.id = id;
     }
 
-    public int getScore() {
-        return score;
+    public Long getLessonPlanId() {
+        return lessonPlanId;
     }
 
-    public void setScore(int score) {
-        this.score = score;
+    public void setLessonPlanId(Long lessonPlanId) {
+        this.lessonPlanId = lessonPlanId;
     }
 
-    public Double getAverage() {
-        return average;
+    public LocalDate getCompletionDate() {
+        return completionDate;
     }
 
-    public void setAverage(Double average) {
-        this.average = average;
+    public void setCompletionDate(LocalDate completionDate) {
+        this.completionDate = completionDate;
     }
 
-    public String getMessage() {
-        return message;
+    public Double getAverageScore() {
+        return averageScore;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
+    public void setAverageScore(Double averageScore) {
+        this.averageScore = averageScore;
     }
 
-    public Status getStatus() {
-        return status;
+    public Double getTimeSpent() {
+        return timeSpent;
     }
 
-    public void setStatus(Status status) {
-        this.status = status;
+    public void setTimeSpent(Double timeSpent) {
+        this.timeSpent = timeSpent;
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private int score;
-    private Double average;
-    private String message;
-    private Status status;
+    public Double getTotalScore() {
+        return totalScore;
+    }
+
+    public void setTotalScore(Double totalScore) {
+        this.totalScore = totalScore;
+    }
+
+    public String getGrade() {
+        return grade;
+    }
+
+    public void setGrade(String grade) {
+        this.grade = grade;
+    }
 }
