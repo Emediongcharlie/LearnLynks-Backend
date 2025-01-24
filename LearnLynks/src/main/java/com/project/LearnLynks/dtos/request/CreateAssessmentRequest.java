@@ -8,16 +8,33 @@ import jakarta.persistence.Id;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter
-@Setter
-@Entity
 public class CreateAssessmentRequest {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private int score;
-    private Double average;
-    private Status status;
+    private Long lessonPlanId;
+    private Double totalScore;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getLessonPlanId() {
+        return lessonPlanId;
+    }
+
+    public void setLessonPlanId(Long lessonPlanId) {
+        this.lessonPlanId = lessonPlanId;
+    }
+
+    public Double getTotalScore() {
+        return totalScore;
+    }
+
+    public void setTotalScore(Double totalScore) {
+        this.totalScore = totalScore;
+    }
 }
 

@@ -59,10 +59,10 @@ public class UserController {
 //        return userRepository.save(users);
 //    }
 
-    @GetMapping("/login")
-    public String login(@RequestParam String username, @RequestParam String password){
-        return "login";
-    }
+//    @GetMapping("/login")
+//    public String login(@RequestParam String username, @RequestParam String password){
+//        return "login";
+//    }
 
 
 
@@ -96,6 +96,11 @@ public class UserController {
         }catch(Exception e){
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
+    }
+
+    @PostMapping("/logout")
+    public LogoutUserResponse logout(@RequestParam Long id) {
+        return userService.logout(id);
     }
 
     @PutMapping("/update-user")

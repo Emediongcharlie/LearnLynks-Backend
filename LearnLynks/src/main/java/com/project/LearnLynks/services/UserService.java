@@ -11,4 +11,6 @@ public interface UserService {
     public LoginUserResponse login(UserLoginRequest userLoginRequest);
 
     public UpdateUserDetailsResponse updateUser(UpdateUserDetailsRequest updateUserDetailsRequest);
+
+    public LogoutUserResponse logout(Long id);
 }
