@@ -12,6 +12,33 @@ public class CreateAssessmentRequest {
     private Long id;
     private Long lessonPlanId;
     private Double totalScore;
+    private Double score;
+    private Long quizId;
+    private String userAnswers;
+
+    public String getUserAnswers() {
+        return userAnswers;
+    }
+
+    public void setUserAnswers(String userAnswers) {
+        this.userAnswers = userAnswers;
+    }
+
+    public Long getQuizId() {
+        return quizId;
+    }
+
+    public void setQuizId(Long quizId) {
+        this.quizId = quizId;
+    }
+
+    public Double getScore() {
+        return score;
+    }
+
+    public void setScore(Double score) {
+        this.score = score;
+    }
 
     public Long getId() {
         return id;

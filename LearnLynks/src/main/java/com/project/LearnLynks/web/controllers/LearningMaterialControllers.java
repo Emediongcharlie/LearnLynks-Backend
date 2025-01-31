@@ -1,4 +1,4 @@
-package com.project.LearnLynks.web.controllers;
+package com.project.LearnLynks.Web.controllers;
 
 import com.project.LearnLynks.dtos.request.CreateLessonPlanRequest;
 import com.project.LearnLynks.dtos.request.DeleteLessonPlanRequest;
@@ -146,14 +146,14 @@ public class LearningMaterialControllers {
 
     @PostMapping("/lesson-plan")
     public ResponseEntity<?> lessonPlan(@RequestParam("material") MultipartFile material,
-                                             @RequestParam("lessonPlanName") String lessonPlanName,
-                                             @RequestParam("lessonPlanDescription") String lessonPlanDescription,
-                                             @RequestParam("lessonPlanStartDate") LocalDate lessonPlanStartDate,
-                                             @RequestParam("lessonPlanEndDate") LocalDate lessonPlanEndDate,
-                                             @RequestParam("lessonPlanDuration") String lessonPlanDuration,
-                                             @RequestParam("lessonPlanStatus") String lessonPlanStatus,
-                                             @RequestParam("CurriculumAdopted") String CurriculumAdopted
-                                             ) throws IOException {
+                                        @RequestParam("lessonPlanName") String lessonPlanName,
+                                        @RequestParam("lessonPlanDescription") String lessonPlanDescription,
+                                        @RequestParam("lessonPlanStartDate") LocalDate lessonPlanStartDate,
+                                        @RequestParam("lessonPlanEndDate") LocalDate lessonPlanEndDate,
+                                        @RequestParam("lessonPlanDuration") String lessonPlanDuration,
+                                        @RequestParam("lessonPlanStatus") String lessonPlanStatus,
+                                        @RequestParam("CurriculumAdopted") String CurriculumAdopted
+    ) throws IOException {
 
         try {
             CreateLessonPlanRequest request = new CreateLessonPlanRequest();
@@ -175,6 +175,7 @@ public class LearningMaterialControllers {
             return new ResponseEntity<>("successfully created lesson plan", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
 
     @GetMapping("/get-all")
     public ResponseEntity<List<LessonPlan>> getAllPlan(){

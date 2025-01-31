@@ -24,7 +24,8 @@ public class UserLoginRequest {
 
     private String username;
     private String password;
-
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
     public Role getRole() {
         return role;
@@ -33,7 +34,4 @@ public class UserLoginRequest {
     public void setRole(Role role) {
         this.role = role;
     }
-
-    @Enumerated(EnumType.STRING)
-    private Role role;
 }

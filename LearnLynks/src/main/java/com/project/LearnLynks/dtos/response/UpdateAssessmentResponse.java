@@ -11,6 +11,15 @@ public class UpdateAssessmentResponse {
     private Double timeSpent;
     private Double totalScore;
     private String grade;
+    private Double score;
+
+    public Double getScore() {
+        return score;
+    }
+
+    public void setScore(Double score) {
+        this.score = score;
+    }
 
     public Long getAssessmentId() {
         return assessmentId;

@@ -20,6 +20,24 @@ public class Assessment {
     private Double timeSpent;
     private Double totalScore;
     private String grade;
+    private Double score;
+    private int numberOfQuizzesTaken;
+
+    public int getNumberOfQuizzesTaken() {
+        return numberOfQuizzesTaken;
+    }
+
+    public void setNumberOfQuizzesTaken(int numberOfQuizzesTaken) {
+        this.numberOfQuizzesTaken = numberOfQuizzesTaken;
+    }
+
+    public Double getScore() {
+        return score;
+    }
+
+    public void setScore(Double score) {
+        this.score = score;
+    }
 
     public Long getAssessmentId() {
         return assessmentId;

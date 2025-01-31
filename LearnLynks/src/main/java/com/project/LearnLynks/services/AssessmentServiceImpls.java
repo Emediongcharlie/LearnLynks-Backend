@@ -14,6 +14,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AssessmentServiceImpls implements AssessmentService {
@@ -24,17 +27,30 @@ public class AssessmentServiceImpls implements AssessmentService {
     private LessonPlanRepository lessonPlanRepository;
     @Autowired
     private LoginLogService loginLogService;
+    @Autowired
+    private QuizService quizService;
 
     @Override
     public CreateAssessmentResponse createAssessment(CreateAssessmentRequest createAssessmentRequest) {
         LessonPlan lessonPlan = lessonPlanRepository.findById(createAssessmentRequest.getLessonPlanId())
                 .orElseThrow(() -> new RuntimeException("Lesson plan not found"));
 
+        Double score = quizService.calculateScore(
+                Collections.singletonList(createAssessmentRequest.getQuizId()),
+                Collections.singletonList(createAssessmentRequest.getUserAnswers())
+        );
+
+        List<Assessment> userAssessments = assessmentRepository.findAll();
+
+        int numberOfQuizzesTaken = userAssessments.size() + 1;
+
+        Double totalScore = userAssessments.stream().mapToDouble(Assessment::getScore).sum() + score;
+
         Double timeSpent = (double) loginLogService.calculateTotalTimeSpent(createAssessmentRequest.getId());
 
-        Double averageScore = createAssessmentRequest.getTotalScore() / 10;
+        Double averageScore = totalScore / numberOfQuizzesTaken;
 
-        String grade = calculateGrade(createAssessmentRequest.getTotalScore());
+        String grade = calculateGrade(totalScore);
 
 
         Assessment assessment = new Assessment();
@@ -43,62 +59,49 @@ public class AssessmentServiceImpls implements AssessmentService {
         assessment.setCompletionDate(LocalDate.now());
         assessment.setAverageScore(averageScore);
         assessment.setTimeSpent(timeSpent);
-        assessment.setTotalScore(createAssessmentRequest.getTotalScore());
+        assessment.setTotalScore(totalScore);
         assessment.setGrade(grade);
+        assessment.setScore(score);
+        assessment.setNumberOfQuizzesTaken(numberOfQuizzesTaken);
 
         Assessment savedAssessment = assessmentRepository.save(assessment);
-
-        CreateAssessmentResponse response = new CreateAssessmentResponse();
-        response.setAssessmentId(savedAssessment.getAssessmentId());
-        response.setId(savedAssessment.getId());
-        response.setLessonPlanId(savedAssessment.getLessonPlan().getId());
-        response.setCompletionDate(savedAssessment.getCompletionDate());
-        response.setAverageScore(savedAssessment.getAverageScore());
-        response.setTimeSpent(savedAssessment.getTimeSpent());
-        response.setTotalScore(savedAssessment.getTotalScore());
-        response.setGrade(savedAssessment.getGrade());
-
-        return response;
+        return mapToCreateAssessmentResponse(savedAssessment);
     }
 
     @Override
     public GetAssessmentResponse getAssessment(Long assessmentId) {
-        Assessment assessment = assessmentRepository.findById(assessmentId)
-                .orElseThrow(() -> new RuntimeException("Assessment not found"));
-
-        GetAssessmentResponse response = new GetAssessmentResponse();
-        response.setId(assessment.getId());
-        response.setLessonPlanId(assessment.getLessonPlan().getId());
-        response.setCompletionDate(assessment.getCompletionDate());
-        response.setAverageScore(assessment.getAverageScore());
-        response.setTimeSpent(assessment.getTimeSpent());
-        response.setTotalScore(assessment.getTotalScore());
-        response.setGrade(assessment.getGrade());
-        return response;
+        Optional<Assessment> assessments = assessmentRepository.findById(assessmentId);
+        if (assessments.isEmpty()) {
+            throw new RuntimeException("Assessment not found");
+        }
+        Assessment assessment = assessments.get();
+        return mapToGetAssessmentResponse(assessment);
     }
 
     @Override
     public UpdateAssessmentResponse updateAssessment(Long assessmentId, UpdateAssessmentRequest updateAssessmentRequest) {
-        Assessment assessment = assessmentRepository.findById(assessmentId)
-                .orElseThrow(() -> new RuntimeException("Assessment not found"));
+        Optional<Assessment> assessments = assessmentRepository.findById(assessmentId);
+        if (assessments.isEmpty()) {
+            throw new RuntimeException("Assessment not found");
+        }
+        Assessment assessment = assessments.get();
 
-        assessment.setTotalScore(updateAssessmentRequest.getTotalScore());
-        assessment.setTimeSpent(updateAssessmentRequest.getTimeSpent());
-        assessment.setGrade(calculateGrade(updateAssessmentRequest.getTotalScore()));
+        Double newScore = quizService.calculateScore(
+                Collections.singletonList(updateAssessmentRequest.getQuizId()),
+                Collections.singletonList(updateAssessmentRequest.getUserAnswer())
+        );
+
+        List<Assessment> userAssessments = assessmentRepository.findAll();
+
+        int numberOfQuizzesTaken = userAssessments.size();
+
+        assessment.setTotalScore(assessment.getTotalScore() + newScore);
+        assessment.setNumberOfQuizzesTaken(numberOfQuizzesTaken);
+        assessment.setAverageScore(assessment.getTotalScore() / numberOfQuizzesTaken);
+        assessment.setGrade(calculateGrade(assessment.getTotalScore()));
 
         Assessment updated = assessmentRepository.save(assessment);
-
-        UpdateAssessmentResponse response = new UpdateAssessmentResponse();
-        response.setAssessmentId(updated.getAssessmentId());
-        response.setId(updated.getId());
-        response.setLessonPlanId(updated.getLessonPlan().getId());
-        response.setCompletionDate(updated.getCompletionDate());
-        response.setAverageScore(updated.getAverageScore());
-        response.setTimeSpent(updated.getTimeSpent());
-        response.setTotalScore(updated.getTotalScore());
-        response.setGrade(updated.getGrade());
-
-        return response;
+        return mapToUpdateAssessmentResponse(updated);
     }
 
     @Override
@@ -122,5 +125,46 @@ public class AssessmentServiceImpls implements AssessmentService {
         } else {
             return "F";
         }
+    }
+
+    private CreateAssessmentResponse mapToCreateAssessmentResponse(Assessment assessment) {
+        CreateAssessmentResponse response = new CreateAssessmentResponse();
+        response.setAssessmentId(assessment.getAssessmentId());
+        response.setId(assessment.getId());
+        response.setLessonPlanId(assessment.getLessonPlan().getId());
+        response.setCompletionDate(assessment.getCompletionDate());
+        response.setAverageScore(assessment.getAverageScore());
+        response.setTimeSpent(assessment.getTimeSpent());
+        response.setTotalScore(assessment.getTotalScore());
+        response.setGrade(assessment.getGrade());
+        response.setScore(assessment.getScore());
+        return response;
+    }
+
+    private UpdateAssessmentResponse mapToUpdateAssessmentResponse(Assessment assessment) {
+        UpdateAssessmentResponse response = new UpdateAssessmentResponse();
+        response.setAssessmentId(assessment.getAssessmentId());
+        response.setId(assessment.getId());
+        response.setLessonPlanId(assessment.getLessonPlan().getId());
+        response.setCompletionDate(assessment.getCompletionDate());
+        response.setAverageScore(assessment.getAverageScore());
+        response.setTimeSpent(assessment.getTimeSpent());
+        response.setTotalScore(assessment.getTotalScore());
+        response.setGrade(assessment.getGrade());
+        response.setScore(assessment.getScore());
+        return response;
+    }
+
+
+    private GetAssessmentResponse mapToGetAssessmentResponse(Assessment assessment) {
+        GetAssessmentResponse response = new GetAssessmentResponse();
+        response.setId(assessment.getId());
+        response.setLessonPlanId(assessment.getLessonPlan().getId());
+        response.setCompletionDate(assessment.getCompletionDate());
+        response.setAverageScore(assessment.getAverageScore());
+        response.setTimeSpent(assessment.getTimeSpent());
+        response.setTotalScore(assessment.getTotalScore());
+        response.setGrade(assessment.getGrade());
+        return response;
     }
 }

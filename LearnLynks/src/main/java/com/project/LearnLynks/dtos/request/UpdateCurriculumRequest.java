@@ -40,5 +40,9 @@ public class UpdateCurriculumRequest {
     }
 
     private byte[] materials;
+    private Long curriculumId;
 
+    public void setCurriculumId(Long curriculumId) {
+        this.curriculumId = curriculumId;
+    }
 }

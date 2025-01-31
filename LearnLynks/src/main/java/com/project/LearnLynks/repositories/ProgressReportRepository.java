@@ -14,5 +14,4 @@ public interface ProgressReportRepository extends JpaRepository<ProgressReport, 
 //    List<ProgressReport> findByUsersId(Long usersId);
 
 //   Optional<ProgressReport> findByUserId(Long id);
-
 }
