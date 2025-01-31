@@ -11,4 +11,9 @@ public class DeleteCurriculumRequest {
     }
 
     private String name;
+    private Long curriculumId;
+
+    public void setCurriculumId(Long curriculumId) {
+        this.curriculumId = curriculumId;
+    }
 }

@@ -33,15 +33,15 @@ public class ProgressReport {
         this.user = user;
     }
 
-    public Long getLessonPlanId() {
-        return lessonPlanId;
-    }
-
-    public void setLessonPlanId(Long lessonPlanId) {
-        this.lessonPlanId = lessonPlanId;
-    }
-
-    private Long lessonPlanId;
+//    public Long getLessonPlanId() {
+//        return lessonPlanId;
+//    }
+//
+//    public void setLessonPlanId(Long lessonPlanId) {
+//        this.lessonPlanId = lessonPlanId;
+//    }
+//
+//    private Long lessonPlanId;
 
     private Status status;
     private LocalDate reportDate;
@@ -56,7 +56,7 @@ public class ProgressReport {
     }
 
     @ManyToOne
-    @JoinColumn(name = "lesson_plan_id", referencedColumnName = "lesson_plan_id")
+    @JoinColumn(name = "lesson_plan_id", referencedColumnName = "id")
     private LessonPlan lessonPlan;
 
     private Ability weakness;
