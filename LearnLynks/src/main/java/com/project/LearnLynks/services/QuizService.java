@@ -13,5 +13,7 @@ public interface QuizService {
      GetQuizResponse getQuizById(Long quizId);
      List<CreateQuizResponse> getAllQuizzes(String userAnswer);
      UpdateQuizResponse updateQuiz(Long quizId);
+     boolean checkAnswer(Long id, String userAnswer);
+     Double calculateScore(List<Long> quizIds, List<String> userAnswers);
      void deleteQuiz(Long quizId);
 }
