@@ -20,6 +20,7 @@ import org.springframework.stereotype.Service;
 
 import java.io.File;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -51,6 +52,10 @@ public class ProgressReportServiceImpl implements ProgressReportService {
             }
             LessonPlan lessonPlan = lessonPlanOptional.get();
             progressReport.setLessonPlan(lessonPlan);
+
+            System.out.println("LessonPlan ID: " + (lessonPlan != null ? lessonPlan.getId() : "NULL"));
+            System.out.println("LessonPlan Name: " + (lessonPlan != null ? lessonPlan.getLessonPlanName() : "NULL"));
+
 
             progressReport.setUser(user);
             progressReport.setStatus(progressReportRequest.getStatus());
@@ -87,12 +92,15 @@ public class ProgressReportServiceImpl implements ProgressReportService {
 
             ProgressReport savedReport = progressReportRepository.save(progressReport);
 
+            System.out.println("Saved LessonPlan in Report: " + (savedReport.getLessonPlan() != null ? savedReport.getLessonPlan().getLessonPlanName() : "NULL"));
+
+
             ProgressReportResponse response = new ProgressReportResponse();
             response.setId(savedReport.getProgressId());
             response.setUserId(savedReport.getUser().getId());
             response.setStatus(savedReport.getStatus());
             response.setReportDate(savedReport.getReportDate());
-//            response.setLessonPlan(savedReport.getLessonPlan().getLessonPlanName());
+            response.setLessonPlanName(savedReport.getLessonPlan().getLessonPlanName());
             response.setGrade(savedReport.getGrade());
 
             response.setStrength(savedReport.getStrength() != null ? savedReport.getStrength().toString() : "None");
@@ -101,6 +109,10 @@ public class ProgressReportServiceImpl implements ProgressReportService {
 
             return response;
         }
+    }
+
+    public List<ProgressReport> getAllProgressReports() {
+        return progressReportRepository.findAll();
     }
 
     public EmailSenderResponse sendEmail(EmailSenderRequest emailSenderRequest) {

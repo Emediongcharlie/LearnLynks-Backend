@@ -136,6 +136,7 @@ public class CurriculumServiceImpl implements CurriculumService {
         Curriculum curriculum = curriculumRepository.findByName(deleteCurriculumRequest.getName())
                 .orElseThrow(() -> new RuntimeException("Curriculum not found"));
 
+
         curriculumRepository.delete(curriculum);
 
         DeleteCurriculumResponse response = new DeleteCurriculumResponse();

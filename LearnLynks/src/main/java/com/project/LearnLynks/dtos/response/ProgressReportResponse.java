@@ -77,18 +77,28 @@ public class ProgressReportResponse {
         this.strength = strength;
     }
 
-    public LessonPlan getLessonPlan() {
-        return lessonPlan;
-    }
-
-    public void setLessonPlan(LessonPlan lessonPlan) {
-        this.lessonPlan = lessonPlan;
-    }
-
-    @ManyToOne
-    private LessonPlan lessonPlan;
+//    public LessonPlan getLessonPlan() {
+//        return lessonPlan;
+//    }
+//
+//    public void setLessonPlan(LessonPlan lessonPlan) {
+//        this.lessonPlan = lessonPlan;
+//    }
+//
+//    @ManyToOne
+//    private LessonPlan lessonPlan;
     private String weakness;
     private String strength;
+
+    public String getLessonPlanName() {
+        return lessonPlanName;
+    }
+
+    public void setLessonPlanName(String lessonPlanName) {
+        this.lessonPlanName = lessonPlanName;
+    }
+
+    private String lessonPlanName;
     public Grades getGrade() {
         return grade;
     }
