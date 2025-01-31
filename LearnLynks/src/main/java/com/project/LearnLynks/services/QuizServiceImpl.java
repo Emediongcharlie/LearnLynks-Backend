@@ -3,13 +3,9 @@ package com.project.LearnLynks.services;
 import com.project.LearnLynks.dtos.request.CreateQuizRequest;
 import com.project.LearnLynks.dtos.response.*;
 import com.project.LearnLynks.models.Quiz;
-import com.project.LearnLynks.models.TriviaQuestion;
 import com.project.LearnLynks.repositories.QuizRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
-
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -53,6 +49,26 @@ public class QuizServiceImpl implements QuizService{
         Quiz quiz = quizRepository.findById(quizId)
                 .orElseThrow(() -> new RuntimeException("Quiz not found with ID: " + quizId));
         return mapToUpdateQuizResponse(quiz);
+    }
+
+
+    @Override
+    public boolean checkAnswer(Long id, String userAnswer) {
+        Quiz quiz = quizRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Quiz not found"));
+        return quiz.getCorrectAnswer().equals(userAnswer);
+    }
+
+
+    @Override
+    public Double calculateScore(List<Long> quizIds, List<String> userAnswers) {
+        double score = 0;
+        for (int s = 0; s < quizIds.size(); s++) {
+            if (checkAnswer(quizIds.get(s), userAnswers.get(s))) {
+                score++;
+            }
+        }
+        return (score / quizIds.size()) * 100;
     }
 
     @Override
