@@ -83,7 +83,7 @@ public class CurriculumServiceImplTest {
         CreateCurriculumResponse createResponse = curriculumService.create(curriculum);
 
         UpdateCurriculumRequest updateRequest = new UpdateCurriculumRequest();
-        updateRequest.setCurriculumId(createResponse.getCurriculumId());
+//        updateRequest.setCurriculumId(createResponse.getCurriculumId());
         updateRequest.setName("Updated Test curriculum");
         updateRequest.setDescription("This is an updated test curriculum");
         updateRequest.setCreator("Jane");
@@ -184,7 +184,7 @@ public class CurriculumServiceImplTest {
         CreateCurriculumResponse createResponse = curriculumService.create(request);
 
         DeleteCurriculumRequest deleteRequest = new DeleteCurriculumRequest();
-        deleteRequest.setCurriculumId(createResponse.getCurriculumId());
+//        deleteRequest.setCurriculumId(createResponse.getCurriculumId());
         DeleteCurriculumResponse response = curriculumService.deleteCurriculum(deleteRequest);
 
         assertNotNull(response);
@@ -200,7 +200,7 @@ public class CurriculumServiceImplTest {
         CreateCurriculumResponse createResponse = curriculumService.create(request);
 
         DeleteCurriculumRequest deleteRequest = new DeleteCurriculumRequest();
-        deleteRequest.setCurriculumId(createResponse.getCurriculumId());
+//        deleteRequest.setCurriculumId(createResponse.getCurriculumId());
         curriculumService.deleteCurriculum(deleteRequest);
 
         try {

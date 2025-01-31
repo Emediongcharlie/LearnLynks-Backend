@@ -11,7 +11,7 @@ import java.util.Optional;
 
 public interface ProgressReportRepository extends JpaRepository<ProgressReport, Long> {
 //    ProgressReport findById(long id);
-////    List<ProgressReport> findByUsersId(Long usersId);
-//   Optional<ProgressReport> findById(Long userId);
+//    List<ProgressReport> findByUsersId(Long usersId);
 
+//   Optional<ProgressReport> findByUserId(Long id);
 }
