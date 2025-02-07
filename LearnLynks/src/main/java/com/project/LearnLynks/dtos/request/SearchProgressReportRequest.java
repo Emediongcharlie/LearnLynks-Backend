@@ -4,13 +4,14 @@ import com.project.LearnLynks.models.Users;
 
 public class SearchProgressReportRequest {
 
-    public Users getUser() {
-        return user;
+
+    public Long getId() {
+        return id;
     }
 
-    public void setUser(Users user) {
-        this.user = user;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    private Users user;
+    private Long id;
 }

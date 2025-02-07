@@ -119,9 +119,10 @@ public class ProgressReportServiceImpl implements ProgressReportService {
     }
 
     public SearchProgressReportResponse searchById(SearchProgressReportRequest searchProgressReportRequest) {
-        Optional<ProgressReport> optionalProgressReport = progressReportRepository.findById(searchProgressReportRequest.getUser().getId());
+        Long id = searchProgressReportRequest.getId();
+        Optional<ProgressReport> optionalProgressReport = progressReportRepository.findById(id);
         if (!optionalProgressReport.isPresent()) {
-            throw new UserNotFoundException("user not found" + searchProgressReportRequest.getUser().getId());
+            throw new UserNotFoundException("user not found" + id);
         }
         ProgressReport progressReport = optionalProgressReport.get();
         System.out.println("Found ProgressReport: " + progressReport);
