@@ -14,12 +14,8 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/assessments")
 public class AssessmentServiceController {
 
-    private final AssessmentService assessmentService;
-
     @Autowired
-    public AssessmentServiceController(AssessmentService assessmentService) {
-        this.assessmentService = assessmentService;
-    }
+    private AssessmentService assessmentService;
 
     @PostMapping
     public CreateAssessmentResponse createAssessment(@RequestBody CreateAssessmentRequest createAssessmentRequest) {

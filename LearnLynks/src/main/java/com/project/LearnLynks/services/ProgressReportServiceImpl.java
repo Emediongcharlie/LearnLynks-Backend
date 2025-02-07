@@ -2,8 +2,10 @@ package com.project.LearnLynks.services;
 
 import com.project.LearnLynks.dtos.request.EmailSenderRequest;
 import com.project.LearnLynks.dtos.request.ProgressReportRequest;
+import com.project.LearnLynks.dtos.request.SearchProgressReportRequest;
 import com.project.LearnLynks.dtos.response.EmailSenderResponse;
 import com.project.LearnLynks.dtos.response.ProgressReportResponse;
+import com.project.LearnLynks.dtos.response.SearchProgressReportResponse;
 import com.project.LearnLynks.exceptions.UserNotFoundException;
 import com.project.LearnLynks.models.*;
 import com.project.LearnLynks.repositories.LessonPlanRepository;
@@ -111,8 +113,29 @@ public class ProgressReportServiceImpl implements ProgressReportService {
         }
     }
 
+
     public List<ProgressReport> getAllProgressReports() {
         return progressReportRepository.findAll();
+    }
+
+    public SearchProgressReportResponse searchById(SearchProgressReportRequest searchProgressReportRequest) {
+        Optional<ProgressReport> optionalProgressReport = progressReportRepository.findById(searchProgressReportRequest.getUser().getId());
+        if (!optionalProgressReport.isPresent()) {
+            throw new UserNotFoundException("user not found" + searchProgressReportRequest.getUser().getId());
+        }
+        ProgressReport progressReport = optionalProgressReport.get();
+
+        SearchProgressReportResponse response = new SearchProgressReportResponse();
+        response.setUserId(progressReport.getUser().getId());
+        response.setStatus(progressReport.getStatus());
+        response.setReportDate(progressReport.getReportDate());
+        response.setLessonPlanName(progressReport.getLessonPlan().getLessonPlanName());
+        response.setGrade(progressReport.getGrade());
+        response.setStrength(progressReport.getStrength() != null ? progressReport.getStrength().toString() : "None");
+        response.setWeakness(progressReport.getWeakness() != null ? progressReport.getWeakness().toString() : "None");
+        response.setRecommendation(progressReport.getRecommendation());
+        return response;
+
     }
 
     public EmailSenderResponse sendEmail(EmailSenderRequest emailSenderRequest) {

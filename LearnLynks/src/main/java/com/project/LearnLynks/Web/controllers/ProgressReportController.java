@@ -1,7 +1,9 @@
 package com.project.LearnLynks.Web.controllers;
 
 import com.project.LearnLynks.dtos.request.ProgressReportRequest;
+import com.project.LearnLynks.dtos.request.SearchProgressReportRequest;
 import com.project.LearnLynks.dtos.response.ProgressReportResponse;
+import com.project.LearnLynks.dtos.response.SearchProgressReportResponse;
 import com.project.LearnLynks.models.ProgressReport;
 import com.project.LearnLynks.services.ProgressReportService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,5 +37,15 @@ public class ProgressReportController {
     public ResponseEntity<List<ProgressReport>> getAllProgressReports() {
         List<ProgressReport> progressReports = progressReportService.getAllProgressReports();
         return ResponseEntity.ok(progressReports);
+    }
+
+    @GetMapping("/progress-report-by-id")
+    public ResponseEntity<?> getProgressReportById(@RequestBody SearchProgressReportRequest searchProgressReportRequest) {
+        try{
+            SearchProgressReportResponse response = progressReportService.searchById(searchProgressReportRequest);
+            return new ResponseEntity<>(response, HttpStatus.OK);
+        }catch(Exception e){
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 }
