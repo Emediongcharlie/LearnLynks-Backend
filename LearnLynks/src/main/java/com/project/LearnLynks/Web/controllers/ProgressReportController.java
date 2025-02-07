@@ -39,7 +39,7 @@ public class ProgressReportController {
         return ResponseEntity.ok(progressReports);
     }
 
-    @GetMapping("/progress-report-by-id")
+    @PostMapping("/progress-report-by-id")
     public ResponseEntity<?> getProgressReportById(@RequestBody SearchProgressReportRequest searchProgressReportRequest) {
         try{
             SearchProgressReportResponse response = progressReportService.searchById(searchProgressReportRequest);
