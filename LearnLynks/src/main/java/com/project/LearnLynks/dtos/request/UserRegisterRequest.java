@@ -1,0 +1,79 @@
+package com.project.LearnLynks.dtos.request;
+
+import com.project.LearnLynks.models.LessonPlan;
+import com.project.LearnLynks.models.Role;
+import com.project.LearnLynks.models.Status;
+import com.project.LearnLynks.models.Users;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
+
+import java.time.LocalDate;
+import java.util.List;
+
+public class UserRegisterRequest {
+
+
+    private String firstName;
+    private String lastName;
+    private String email;
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    private String username;
+
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
+    private String password;
+
+    @Enumerated(EnumType.STRING)
+    private Role role;
+
+
+}

@@ -1,0 +1,24 @@
+package com.project.LearnLynks.dtos.response;
+
+public class LoginStudentResponse {
+
+    private String username;
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    private String message;
+}

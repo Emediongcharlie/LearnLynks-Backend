@@ -1,7 +1,13 @@
 package com.project.LearnLynks.repositories;
 
-import com.project.LearnLynks.models.User;
+import com.project.LearnLynks.models.Users;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface UserRepository extends JpaRepository<User, Integer> {
+import java.util.Optional;
+
+public interface UserRepository extends JpaRepository<Users, Long> {
+
+    Optional<Users> findByUsername(String username);
+    Optional<Users> findByEmail(String email);
+    Optional<Users> findById(Users id);
 }

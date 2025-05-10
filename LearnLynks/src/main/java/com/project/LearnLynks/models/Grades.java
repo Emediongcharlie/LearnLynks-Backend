@@ -1,4 +1,6 @@
 package com.project.LearnLynks.models;
 
-public class Curriculum {
+public enum Grades {
+
+    A,B,C,D,E,F
 }
