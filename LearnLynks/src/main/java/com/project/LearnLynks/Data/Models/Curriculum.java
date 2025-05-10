@@ -1,0 +1,69 @@
+package com.project.LearnLynks.Data.Models;
+
+import com.project.LearnLynks.models.Materials;
+import jakarta.persistence.*;
+import lombok.extern.java.Log;
+
+@Entity
+public class Curriculum {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long curriculumId;
+    private String name;
+    private String description;
+    private boolean archived;
+    private String creator;
+
+
+    public byte[] getMaterials() {
+        return materials;
+    }
+
+    public void setMaterials(byte[] materials) {
+        this.materials = materials;
+    }
+
+    @Lob
+    private byte[] materials;
+
+    public boolean isArchived() {
+        return archived;
+    }
+
+    public void setArchived(boolean archived) {
+        this.archived = archived;
+    }
+
+    public Long getCurriculumId() {
+        return curriculumId;
+    }
+
+    public void setCurriculumId(Long curriculumId) {
+        this.curriculumId = curriculumId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getCreator() {
+        return creator;
+    }
+
+    public void setCreator(String creator) {
+        this.creator = creator;
+    }
+
+}

@@ -3,6 +3,9 @@ target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
+LearnLynks/.idea/uiDesigner.xml/
+LearnLynks/.idea/vcs.xml/
+
 
 ### STS ###
 .apt_generated
